@@ -140,15 +140,16 @@ def get_events():
     # call Eventbrite API
     return list(map(retrieve_event, event_ids))
 
-for event in get_events():
-    print('----------------------------')
-    print("Name: " + event._name)
-    print("Time: "
-        + str(datetime.fromtimestamp(event._start_time, tz=pytz.timezone('Australia/Sydney')))
-        + " to "
-        + str(datetime.fromtimestamp(event._end_time,  tz=pytz.timezone('Australia/Sydney'))))
-    if event._organiser is not None:
-        print("Organiser: " + event._organiser)
-    print("Summary: " + event._summary)
-    print("Is free? " + str(event._is_free))
-    print("Tags: " + str(event._tags))
+if __name__ == '__main__':
+    for event in get_events():
+        print('----------------------------')
+        print("Name: " + event._name)
+        print("Time: "
+            + str(datetime.fromtimestamp(event._start_time, tz=pytz.timezone('Australia/Sydney')))
+            + " to "
+            + str(datetime.fromtimestamp(event._end_time,  tz=pytz.timezone('Australia/Sydney'))))
+        if event._organiser is not None:
+            print("Organiser: " + event._organiser)
+        print("Summary: " + event._summary)
+        print("Is free? " + str(event._is_free))
+        print("Tags: " + str(event._tags))
