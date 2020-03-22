@@ -1,22 +1,93 @@
 from bs4 import BeautifulSoup
+from datetime import datetime
 from dotenv import load_dotenv
-from json import loads
+from json import loads, load
+from event import Event
 import os
 import requests
 import re
 
 '''
-This web scraper retrieves all event IDs of events listed on
+This module scrapes all event IDs of events listed on
 https://www.eventbrite.co.uk/d/australia--sydney/all-events/
+and calls the Eventbrite API to retrieve event details
 '''
 
 load_dotenv()
 
 LINK_CLASS_NAME = "eds-media-card-content__action-link"
-EVENTBRITE_API = "https://www.eventbriteapi.com/v3/events/"
+EVENTBRITE_API = "https://www.eventbriteapi.com/v3/"
+EVENTS_PATH = "events/"
 EVENTBRITE_API_KEY = os.getenv("EVENTBRITE_API_KEY")
 EVENTBRITE_URL = "https://www.eventbrite.co.uk/d"
 SEARCH_PATH = "/australia--sydney/all-events/"
+
+#TODO - determine if an event is indoors/outdoors
+activity_tags = {
+    # Music
+    "103": ["artsy", "romantic", "indoors", "outdoors"],
+
+    # Business & Professional
+    "101": ["geeky", "indoors", "outdoors"],
+
+    # Food & Drink
+    "110": ["hungry", "family-friendly", "indoors", "outdoors"],
+
+    # Community & Culture
+    "113": ["indoors", "outdoors"],
+
+    # Performing & Visual Arts
+    "105": ["artsy", "romantic", "indoors", "outdoors"],
+
+    # Film, Media & Entertainment
+    "104": ["artsy", "romantic", "indoors", "outdoors"],
+
+    # Sports & Fitness
+    "108": ["sporty", "indoors", "outdoors"],
+
+    # Health & Wellness
+    "107": ["artsy", "indoors", "outdoors"],
+
+    # Science & Technology
+    "102": ["geeky", "indoors", "outdoors"],
+
+    # Travel & Outdoor
+    "109": ["outdoors"],
+
+    # Charity & Causes
+    "111": ["indoors", "outdoors"],
+
+    # Religion & Spirituality
+    "114": ["indoors", "outdoors"],
+
+    # Family & Education
+    "115": ["family-friendly", "indoors", "outdoors"],
+    
+    # Seasonal & Holiday
+    "116": ["indoors", "outdoors"],
+
+    # Government & Politics
+    "112": ["geeky", "indoors", "outdoors"],
+
+    # Fasion & Beauty
+    "106": ["artsy", "indoors", "outdoors"],
+
+    # Home & Lifestyle
+    "117": ["artsy", "indoors", "outdoors"],
+
+    # Auto, Boat & Air
+    "118": ["outdoors"],
+
+    # Hobbies & Special Interest
+    "119": ["artsy", "geeky", "indoors", "outdoors"],
+
+    # Other
+    # Give all tags for now
+    "199": ["artsy", "indoors", "outdoors", "sporty", "romantic", "family-friendly", "geeky", "history", "hungry"],
+
+    # School Activities
+    "120": ["family-friendly", "indoors", "outdoors"]
+}
 
 headers = {
     "Authorization": f"Bearer {EVENTBRITE_API_KEY}"
@@ -42,11 +113,24 @@ def scrape_event_ids():
 
 def retrieve_event(event_id):
     params = {
-        "event_ids": event_id
+        "event_ids": event_id,
+        "expand": "venue,organizer"
     }
 
-    response = loads(requests.get(EVENTBRITE_API, params=params, headers=headers).text)
-    return response["events"][0]
+    response = loads(requests.get(EVENTBRITE_API + EVENTS_PATH, params=params, headers=headers).text)["events"][0]
+
+    return Event(
+        start_time = datetime.strptime(response["start"]["utc"], "%Y-%m-%dT%H:%M:%SZ").timestamp(),
+        end_time = datetime.strptime(response["end"]["utc"], "%Y-%m-%dT%H:%M:%SZ").timestamp(),
+        latitude = response["venue"]["latitude"],
+        longitude = response["venue"]["longitude"],
+        name = response["name"],
+        organiser = response["organizer"]["name"],
+        is_free = response["is_free"],
+        summary = response["summary"],
+        description_html = response["description"]["html"],
+        tags = activity_tags.get(response["category_id"])
+    )
 
 def get_events():
     event_ids = scrape_event_ids()
