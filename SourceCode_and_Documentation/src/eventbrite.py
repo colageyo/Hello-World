@@ -129,6 +129,7 @@ def retrieve_event(event_id):
         name = response["name"]["text"],
         organiser = response["organizer"]["name"],
         is_free = response["is_free"],
+        is_online = response["online_event"],
         summary = response["summary"],
         description_html = response["description"]["html"],
         tags = activity_tags.get(response["category_id"])
@@ -152,4 +153,5 @@ if __name__ == '__main__':
             print("Organiser: " + event._organiser)
         print("Summary: " + event._summary)
         print("Is free? " + str(event._is_free))
+        print("Is online? " + str(event._is_online))
         print("Tags: " + str(event._tags))
