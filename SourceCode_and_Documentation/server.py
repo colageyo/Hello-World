@@ -18,7 +18,6 @@ def get_all_events():
     try:
         
         return sendSuccess({
-            '': returnDict[''],
         })
     except ValueError as e:
         return sendError(e.args)
