@@ -3,3 +3,4 @@ gunicorn
 flask
 flask-cors
 beautifulsoup4
+pytz
