@@ -4,6 +4,7 @@ from dotenv import load_dotenv
 from json import loads, load
 from event import Event
 import os
+import pytz
 import requests
 import re
 
@@ -120,11 +121,12 @@ def retrieve_event(event_id):
     response = loads(requests.get(EVENTBRITE_API + EVENTS_PATH, params=params, headers=headers).text)["events"][0]
 
     return Event(
+        event_id = f"EVENTBRITE-{event_id}",
         start_time = datetime.strptime(response["start"]["utc"], "%Y-%m-%dT%H:%M:%SZ").timestamp(),
         end_time = datetime.strptime(response["end"]["utc"], "%Y-%m-%dT%H:%M:%SZ").timestamp(),
         latitude = response["venue"]["latitude"],
         longitude = response["venue"]["longitude"],
-        name = response["name"],
+        name = response["name"]["text"],
         organiser = response["organizer"]["name"],
         is_free = response["is_free"],
         summary = response["summary"],
@@ -137,3 +139,16 @@ def get_events():
 
     # call Eventbrite API
     return list(map(retrieve_event, event_ids))
+
+for event in get_events():
+    print('----------------------------')
+    print("Name: " + event._name)
+    print("Time: "
+        + str(datetime.fromtimestamp(event._start_time, tz=pytz.timezone('Australia/Sydney')))
+        + " to "
+        + str(datetime.fromtimestamp(event._end_time,  tz=pytz.timezone('Australia/Sydney'))))
+    if event._organiser is not None:
+        print("Organiser: " + event._organiser)
+    print("Summary: " + event._summary)
+    print("Is free? " + str(event._is_free))
+    print("Tags: " + str(event._tags))
