@@ -2,7 +2,7 @@ from bs4 import BeautifulSoup
 from datetime import datetime
 from dotenv import load_dotenv
 from json import loads, load
-from event import Event
+from src.event import Event
 import os
 import pytz
 import requests
