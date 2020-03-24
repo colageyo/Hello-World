@@ -3,7 +3,6 @@ from event import Event
 
 URL = 'https://api.foursquare.com/v2/venues/search'
 PREMIUM_URL = 'https://api.foursquare.com/v2/venues/'
-    
 
 # A dictionary containing the category id of all
 # the required categories.
@@ -22,14 +21,11 @@ CATEGORIES = {
 
 
 def get_all_events():
-
     event_list = []
     
     for category in CATEGORIES.values():
-
         # params include ll as the latitude and longitude of the city or suburb to search in.
         client_info = dict(
-
             client_id='DEPF4JDYDGBETTC5RDGFWUZTZIB2DDASK4XGU2H0POZSUGO0',
             client_secret='XZP10N5EEDLDVNT04WPSFYUMWPX20LVCFGMC2JMWKXHRG2AI',
             v='20180604',
@@ -37,29 +33,24 @@ def get_all_events():
             limit='100000',
             radius='100000',
             ll='-33.8671417236,151.2071075439'
-
         )
 
-        # GET request for the list of places.
         response = requests.get(url=URL, params=client_info)
         data = json.loads(response.text)
         venues = data['response']['venues']
 
         for venue in venues:
-            
             event = parseVenueToEvent(venue)
             event_list.append(event)
 
     return event_list
 
 def get_event_details(id):
-    
     premium_client_info = dict(
         client_id='DEPF4JDYDGBETTC5RDGFWUZTZIB2DDASK4XGU2H0POZSUGO0',
         client_secret='XZP10N5EEDLDVNT04WPSFYUMWPX20LVCFGMC2JMWKXHRG2AI',
         v='20180604'
     )
-
     call_url = PREMIUM_URL + id
             
     premium_response = requests.get(url=call_url, params=premium_client_info)
@@ -68,15 +59,13 @@ def get_event_details(id):
     return premium_data['response']['venue']
 
 def parseVenueToEvent(venue):
-
     time = ""
     start_time = ""
     end_time = ""
     url = ""
     description = ""
-    price = ""
-    rating = []
-
+    price = True
+    
     if 'hours' in venue:
         time = venue['hours']['timeframes']
         line = str(time[0]['open'][0]['renderedTime'])
@@ -85,15 +74,12 @@ def parseVenueToEvent(venue):
         end_time = line[1]
     if 'url' in venue:
         url = venue['url']
-    if 'rating' in venue:
-        rating.append(venue['rating'])
     if 'description' in venue:
         description = venue['description']
     if 'price'in venue:
-        price = venue['price']['currency']
-    
+        price = False
    
     event_obj = Event(venue['id'], start_time, end_time, venue['location']['lat'], venue['location']
-        ['lng'], venue['name'], None, price, None, description, url, None, rating)
+        ['lng'], venue['name'], "",price, "", description, url, "", [])
 
     return event_obj
