@@ -2,7 +2,8 @@ import json, requests
 from event import Event
 
 URL = 'https://api.foursquare.com/v2/venues/search'
-
+PREMIUM_URL = 'https://api.foursquare.com/v2/venues/'
+    
 
 # A dictionary containing the category id of all
 # the required categories.
@@ -27,7 +28,7 @@ def get_all_events():
     for category in CATEGORIES.values():
 
         # params include ll as the latitude and longitude of the city or suburb to search in.
-        params = dict(
+        client_info = dict(
 
             client_id='DEPF4JDYDGBETTC5RDGFWUZTZIB2DDASK4XGU2H0POZSUGO0',
             client_secret='XZP10N5EEDLDVNT04WPSFYUMWPX20LVCFGMC2JMWKXHRG2AI',
@@ -40,61 +41,59 @@ def get_all_events():
         )
 
         # GET request for the list of places.
-        response = requests.get(url=URL, params=params)
+        response = requests.get(url=URL, params=client_info)
         data = json.loads(response.text)
         venues = data['response']['venues']
 
         for venue in venues:
-
-            y = venue
-
-            time = None
-            start_time = None
-            end_time = None
-            url = None
-            description = None
-            price = None
-            rating = []
-
-            if ('hours' in y):
-
-                time = y['hours']['timeframes']
-                line = str(time[0]['open'][0]['renderedTime'])
-                line = line.split("–")
-                start_time = line[0]
-                end_time = line[1]
-
-            if ('url' in y):
-                url = y['url']
-
-            if ('rating' in y):
-                rating.append(y['rating'])
-
-            if('description' in y):
-                description = y['description']
-
-            if ('price'in y):
-                price = y['price']['currency']
             
-            event_obj = Event(y['id'], start_time, end_time, y['location']['lat'], y['location']
-              ['lng'], y['name'], None, price, None, description, url, None, rating)
-
-            event_list.append(event_obj)
+            event = parseVenueToEvent(venue)
+            event_list.append(event)
 
     return event_list
 
 def get_event_details(id):
     
-    params_prem = dict(
+    premium_client_info = dict(
         client_id='DEPF4JDYDGBETTC5RDGFWUZTZIB2DDASK4XGU2H0POZSUGO0',
         client_secret='XZP10N5EEDLDVNT04WPSFYUMWPX20LVCFGMC2JMWKXHRG2AI',
         v='20180604'
     )
 
-    PREMIUM_URL = 'https://api.foursquare.com/v2/venues/'
     call_url = PREMIUM_URL + id
             
-    premium_response = requests.get(url=call_url, params=PARAMS_PREM)
+    premium_response = requests.get(url=call_url, params=premium_client_info)
     premium_data = json.loads(premium_response.text)
             
     return premium_data['response']['venue']
+
+def parseVenueToEvent(venue):
+
+    time = ""
+    start_time = ""
+    end_time = ""
+    url = ""
+    description = ""
+    price = ""
+    rating = []
+
+    if 'hours' in venue:
+        time = venue['hours']['timeframes']
+        line = str(time[0]['open'][0]['renderedTime'])
+        line = line.split("–")
+        start_time = line[0]
+        end_time = line[1]
+    if 'url' in venue:
+        url = venue['url']
+    if 'rating' in venue:
+        rating.append(venue['rating'])
+    if 'description' in venue:
+        description = venue['description']
+    if 'price'in venue:
+        price = venue['price']['currency']
+    
+   
+    event_obj = Event(venue['id'], start_time, end_time, venue['location']['lat'], venue['location']
+        ['lng'], venue['name'], None, price, None, description, url, None, rating)
+
+    return event_obj
