@@ -17,7 +17,7 @@ CATEGORIES = {
     'food': "4d4b7105d754a06374d81259", 
     'gaming cafes': '4bf58dd8d48988d18d941735',
     'uni': '4bf58dd8d48988d1a8941735', 
-              }
+    }
 
 
 def get_all_events():
@@ -40,7 +40,7 @@ def get_all_events():
         venues = data['response']['venues']
 
         for venue in venues:
-            event = parseVenueToEvent(venue)
+            event = parseVenueToEvent(venue,category)
             event_list.append(event)
 
     return event_list
@@ -58,13 +58,14 @@ def get_event_details(id):
             
     return premium_data['response']['venue']
 
-def parseVenueToEvent(venue):
+def parseVenueToEvent(venue, category):
     time = ""
     start_time = ""
     end_time = ""
     url = ""
     description = ""
     price = True
+    is_online = True
     
     if 'hours' in venue:
         time = venue['hours']['timeframes']
@@ -79,7 +80,7 @@ def parseVenueToEvent(venue):
     if 'price'in venue:
         price = False
    
-    event_obj = Event(venue['id'], start_time, end_time, venue['location']['lat'], venue['location']
-        ['lng'], venue['name'], "",price, "", description, url, "", [])
+    event_obj = Event(venue['id'], url,start_time, end_time, venue['location']['lat'], venue['location']
+        ['lng'], venue['name'], "",price, is_online, description, [category], [])
 
     return event_obj
