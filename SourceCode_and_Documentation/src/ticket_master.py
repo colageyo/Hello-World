@@ -64,7 +64,7 @@ def parseInfoToEvent(info):
         call = info['classifications'][0]
         tags = [call['segment']['name'],call['genre']['name'],call['subGenre']['name']]
     
-    event_info = Event(info['id'], start_time, end_time, latitude, longitude, 
-        info['name'], organiser ,price, is_online, summary, url, tags, [])
+    event_info = Event(info['id'],url, start_time, end_time, latitude, longitude, 
+        info['name'], organiser ,price, is_online, summary, tags, [])
 
     return event_info
