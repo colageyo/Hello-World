@@ -21,7 +21,8 @@ def get_events():
             countryCode='AU',
             stateCode='NSW',
             startDateTime=datetime.now().isoformat()[:-7] + 'Z',
-            endDateTime=(datetime.now() + timedelta(days=1)).isoformat()[:-7] + 'Z'
+            endDateTime=(datetime.now() + timedelta(days=1)
+                         ).isoformat()[:-7] + 'Z'
         )
 
         response = requests.get(url=URL, params=client_info)
