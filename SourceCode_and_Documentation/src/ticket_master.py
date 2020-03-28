@@ -49,7 +49,7 @@ def parseInfoToEvent(info):
     is_online = True
     price = False
     
-    if (info['dates']['status']['code'] == 'cancelled'):
+    if info['dates']['status']['code'] == 'cancelled':
         is_online = False
     if 'dates' in info:
         if 'start' in info['dates']:
