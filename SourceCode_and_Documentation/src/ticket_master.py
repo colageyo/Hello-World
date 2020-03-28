@@ -16,7 +16,7 @@ def get_events():
         # Parameters for get request which includes , apikey, classifications and event date times.
         client_info = dict(
             classificationName=classification,
-            apikey = API_KEY,
+            apikey=API_KEY,
             source='ticketmaster',
             countryCode='AU',
             stateCode='NSW',
