@@ -47,7 +47,8 @@ def parseInfoToEvent(info):
     latitude = info['_embedded']['venues'][0]['location']['latitude']
     longitude = info['_embedded']['venues'][0]['location']['longitude']
     is_online = True
-    is_free = False  #this parameter is always false in ticketmaster API because ticketmaster only returns events which have tickets.
+    # this parameter is always false in TicketMaster API because TicketMaster only returns events that have tickets.
+    is_free = False  
     
     if info['dates']['status']['code'] == 'cancelled':
         is_online = False
