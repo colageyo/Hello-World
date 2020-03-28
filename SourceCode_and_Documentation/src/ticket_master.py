@@ -5,8 +5,8 @@ from datetime import datetime, timedelta
 URL = 'https://app.ticketmaster.com/discovery/v2/events'
 API_KEY = 's1zvxw6AwOPPr7ej3vaA4EykE2LeO0vU'
 CLASSIFICATIONS = [
-    'Hip-Hop',
     'Arts & Theatre'
+    'Hip-Hop',
 ]
 
 def get_events():
