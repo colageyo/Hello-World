@@ -1,5 +1,7 @@
 **/.vscode
 **/.env
+**/city.list.json
+**/eventbrite_categories.json
 
 ### JetBrains+all ###
 # Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm, CLion, Android Studio and WebStorm
