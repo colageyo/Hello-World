@@ -1,0 +1,65 @@
+.logo {
+    height: 60px;
+}
+
+.main-container {
+    align-items: center;
+    display: flex;
+    justify-content: space-around;
+}
+
+.inner-container {
+    display: flex;
+    justify-content: space-between;
+    min-width: 80%;
+}
+
+.text-container {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+}
+
+.tool-bar-text {
+    margin: 2px;
+    padding: 3px;
+}
+
+.button {
+    border-radius: 10rem;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 1rem;
+    letter-spacing: .15rem;
+    overflow: hidden;
+    padding: .75rem 1.25rem;
+    position: relative;
+    transition: all .3s;
+    z-index: 1;
+}
+
+.button:after {
+    border-radius: 10rem;
+    background-color: white;
+}
+
+.button:before {
+    background-color: #a4aab3;
+    border-radius: 10rem;
+    bottom: 0;
+    content: '';
+    height: 100%;
+    left: 0;
+    position: absolute;
+    transition: all .3s;
+    width: 0%;
+    z-index: -1;
+}
+
+.button:hover {
+    color: #fff;
+}
+
+.button:hover:before {
+    width: 100%;
+}
