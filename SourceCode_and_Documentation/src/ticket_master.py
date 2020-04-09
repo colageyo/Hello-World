@@ -4,26 +4,34 @@ from datetime import datetime, timedelta
 
 URL = 'https://app.ticketmaster.com/discovery/v2/events'
 API_KEY = 's1zvxw6AwOPPr7ej3vaA4EykE2LeO0vU'
-CLASSIFICATIONS = [
-    'Arts & Theatre'
-    'Hip-Hop',
-]
+CLASSIFICATIONS = {
+    'Amusement Park': ['outdoors', 'family-friendly', 'sporty'],
+    'Arts & Theatre': ['indoors', 'family-friendly', 'artsy'],
+    'Campsite': ['outdoors', 'family-friendly', 'sporty', 'historic'],
+    'Casino/Gaming': ['indoors', 'geeky', 'sporty'],
+    'Childrens Festival': ['indoors', 'family-friendly', 'sporty', 'artsy'],
+    'Fairs & Festivals': ['indoors', 'family-friendly', 'sporty'],
+    'Festival': ['outdoors', 'artsy'],
+    'Food & Drink': ['indoors', 'family-friendly','romantic', 'hungry'],
+    'Health/Wellness': ['outdoors', 'sporty', 'artsy'],
+    'Museum': ['indoors', 'family-friendly', 'historic', 'geeky', 'artsy'],
+    'Music': ['outdoors', 'artsy'],
+    'Sports': ['outdoors', 'family-friendly', 'sporty']
+    }
+
 
 def get_events():
     event_list = []
 
-    for classification in CLASSIFICATIONS:
+    for classification in CLASSIFICATIONS.keys():
         # Parameters for get request which includes , apikey, classifications and event date times.
-        client_info = dict(
-            classificationName=classification,
-            apikey=API_KEY,
-            source='ticketmaster',
-            countryCode='AU',
-            stateCode='NSW',
-            startDateTime=datetime.now().isoformat()[:-7] + 'Z',
-            endDateTime=(datetime.now() + timedelta(days=1)
-                         ).isoformat()[:-7] + 'Z'
-        )
+        client_info = {
+            'classificationName': classification,
+            'apikey': API_KEY,
+            'source': 'ticketmaster',
+            'countryCode': 'AU',
+            'stateCode': 'NSW',
+            }
 
         response = requests.get(url=URL, params=client_info)
         data = json.loads(response.text)
@@ -32,23 +40,22 @@ def get_events():
             events = data['_embedded']['events']
             
             for info in events:
-                event_obj = parseInfoToEvent(info)
-                event_list.append(event_obj)
+                event_list.append(parseInfoToEvent(info, classification))
 
     return event_list
-                
-def parseInfoToEvent(info):
+
+
+def parseInfoToEvent(info, classification):
     start_time = ""
     end_time = ""
     url = ""
     summary = ""
     organiser = ""
-    tags = []
-    latitude = info['_embedded']['venues'][0]['location']['latitude']
-    longitude = info['_embedded']['venues'][0]['location']['longitude']
+    tags = CLASSIFICATIONS.get(classification)
+    latitude = ""
+    longitude = ""
     is_online = True
-    # this parameter is always false in TicketMaster API because TicketMaster only returns events that have tickets.
-    is_free = False  
+    is_free = False  #this parameter is always false in ticketmaster API because ticketmaster only returns events which have tickets.
     
     if info['dates']['status']['code'] == 'cancelled':
         is_online = False
@@ -56,17 +63,19 @@ def parseInfoToEvent(info):
         if 'start' in info['dates']:
             if 'dateTime' in info['dates']['start']:
                 start_time = info['dates']['start']['dateTime']
+    if 'location' in info['_embedded']['venues'][0]: 
+        latitude = info['_embedded']['venues'][0]['location']['latitude']
+        longitude = info['_embedded']['venues'][0]['location']['longitude']
     if 'info' in info:
         summary = info['info']
     if 'promoter' in info:
         organiser = info['promoter']['name']
     if 'url' in info:
         url = info['url']
-    if 'classifications' in info:
-        call = info['classifications'][0]
-        tags = [call['segment']['name'],call['genre']['name'],call['subGenre']['name']]
     
-    event_info = Event(info['id'],url, start_time, end_time, latitude, longitude, 
-        info['name'], organiser ,is_free, is_online, summary, tags, [])
+    event_info = Event(info['id'], url, start_time, end_time, latitude, longitude, 
+        info['name'], organiser, is_free, is_online, summary, tags, [])
 
     return event_info
+
+get_events()
