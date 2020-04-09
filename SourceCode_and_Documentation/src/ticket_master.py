@@ -20,7 +20,7 @@ CLASSIFICATIONS = {
     }
 
 
-def get_events():
+def get_all_events():
     event_list = []
 
     for classification in CLASSIFICATIONS.keys():
@@ -77,5 +77,3 @@ def parseInfoToEvent(info, classification):
         info['name'], organiser, is_free, is_online, summary, tags, [])
 
     return event_info
-
-get_events()
