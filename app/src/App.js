@@ -5,8 +5,7 @@ import HelloWorldToolBar from './HelloWorldToolBar';
 class App extends Component {
   render() {
     return (
-      <HelloWorldToolBar>
-      </HelloWorldToolBar>
+      <HelloWorldToolBar />
     );
   }
 }
