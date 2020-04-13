@@ -11,7 +11,7 @@
 .inner-container {
     display: flex;
     justify-content: space-between;
-    min-width: 80%;
+    min-width: 70%;
 }
 
 .text-container {
@@ -20,45 +20,36 @@
 }
 
 .tool-bar-text {
-    margin: 2px;
+    margin-left: 50px;
     padding: 3px;
 }
 
 .button {
-    border-radius: 10rem;
+    /* border-radius: 10rem; */
     cursor: pointer;
     display: inline-block;
     font-size: 1rem;
-    letter-spacing: .15rem;
+    letter-spacing: .05rem;
     overflow: hidden;
-    padding: .75rem 1.25rem;
+    padding: .75rem 0rem;
     position: relative;
     transition: all .3s;
     z-index: 1;
 }
 
-.button:after {
-    border-radius: 10rem;
-    background-color: white;
-}
 
 .button:before {
-    background-color: #a4aab3;
-    border-radius: 10rem;
-    bottom: 0;
-    content: '';
-    height: 100%;
-    left: 0;
+    content: "";
     position: absolute;
-    transition: all .3s;
-    width: 0%;
-    z-index: -1;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    background-color: #000;
+    visibility: hidden;
+    transition: all 0.3s ease-in-out;
 }
 
-.button:hover {
-    color: #fff;
-}
-
-.button:hover:before {
+.button:hover:before{
+    visibility: visible;
     width: 100%;
 }
