@@ -1,10 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './HelloWorldToolBar.css';
 import './App.css';
 import Logo from './favicon.ico'
 
-class HelloWorldToolBar extends Component {
-  render() {
+function HelloWorldToolBar() {
     return (
       <div className="main-container">
         <div className="inner-container">
@@ -16,7 +15,6 @@ class HelloWorldToolBar extends Component {
         </div>
       </div>
     );
-  }
 }
 
 export default HelloWorldToolBar;
