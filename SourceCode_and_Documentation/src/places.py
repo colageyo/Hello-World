@@ -1,19 +1,22 @@
-import json, requests
-from event import Event
+import json
+
+import requests
+
+from src.event import Event
 
 URL = 'https://api.foursquare.com/v2/venues/search'
 PREMIUM_URL = 'https://api.foursquare.com/v2/venues/'
 
 # A dictionary containing the category id of all
 # the required categories.
-CATEGORIES = { 
+CATEGORIES = {
     '4bf58dd8d48988d1e1931735': 'arcade',
     '4bf58dd8d48988d116941735': 'bar',
-    '4bf58dd8d48988d1e2941735': 'beach', 
+    '4bf58dd8d48988d1e2941735': 'beach',
     '4bf58dd8d48988d16d941735': 'cafe',
-    '4bf58dd8d48988d103951735': 'clothes', 
+    '4bf58dd8d48988d103951735': 'clothes',
     '4bf58dd8d48988d147941735': 'diner',
-    '4d4b7105d754a06373d81259': 'events', 
+    '4d4b7105d754a06373d81259': 'events',
     '4bf58dd8d48988d18d941735': 'gaming-cafes',
     '4bf58dd8d48988d1f1931735': 'general-entertainment',
     '4bf58dd8d48988d175941735': 'gym',
@@ -27,7 +30,7 @@ CATEGORIES = {
     '4bf58dd8d48988d125941735': 'tech-startup',
     '4bf58dd8d48988d193941735': 'water-park',
     '4bf58dd8d48988d17b941735': 'zoo'
-    }   
+}
 
 # A dict containing all the relevant tags to the items in
 # CATEGORIES dict.
@@ -41,7 +44,7 @@ CATEGORIES_TAGS = {
     'events': ['outdoors', 'artsy'],
     'gaming-cafes': ['indoors', 'sporty', 'geeky'],
     'general-entertainment': ['indoors', 'family-friendly'],
-    'gym': ['indoors', 'sporty'],  
+    'gym': ['indoors', 'sporty'],
     'festival': ['outdoors', 'family-friendly'],
     'fishing-spot': ['outdoors', 'family-friendly', 'sporty'],
     'movie': ['indoors', 'family-friendly'],
@@ -52,7 +55,7 @@ CATEGORIES_TAGS = {
     'tech-startup': ['indoors', 'geeky'],
     'water-park': ['outdoors', 'family-friendly', 'sporty'],
     'zoo': ['outdoors', 'family-friendly', 'geeky', 'historic']
-    }
+}
 
 
 def get_all_events():
@@ -68,7 +71,7 @@ def get_all_events():
             'limit': 28,
             'radius': '100000',
             'll': '-33.8671417236, 151.2071075439'
-            }
+        }
 
         response = requests.get(url=URL, params=client_info)
         data = json.loads(response.text)
@@ -85,12 +88,12 @@ def get_event_details(id):
         'client_id': 'DEPF4JDYDGBETTC5RDGFWUZTZIB2DDASK4XGU2H0POZSUGO0',
         'client_secret': 'XZP10N5EEDLDVNT04WPSFYUMWPX20LVCFGMC2JMWKXHRG2AI',
         'v': '20180604'
-        }
+    }
     call_url = PREMIUM_URL + id
-            
+
     premium_response = requests.get(url=call_url, params=premium_client_info)
     premium_data = json.loads(premium_response.text)
-            
+
     return premium_data['response']['venue']
 
 
@@ -102,7 +105,7 @@ def parseVenueToEvent(venue, category):
     description = ""
     price = True
     is_online = True
-    
+
     if 'hours' in venue:
         time = venue['hours']['timeframes']
         line = str(time[0]['open'][0]['renderedTime'])
@@ -113,10 +116,10 @@ def parseVenueToEvent(venue, category):
         url = venue['url']
     if 'description' in venue:
         description = venue['description']
-    if 'price'in venue:
+    if 'price' in venue:
         price = False
 
-    event_obj = Event(venue['id'], url,start_time, end_time, venue['location']['lat'], venue['location']
-        ['lng'], venue['name'], "", price, is_online, description, CATEGORIES_TAGS.get(CATEGORIES.get(category)), [])
-    
+    event_obj = Event(venue['id'], url, start_time, end_time, venue['location']['lat'], venue['location']
+    ['lng'], venue['name'], "", price, is_online, description, CATEGORIES_TAGS.get(CATEGORIES.get(category)), [])
+
     return event_obj

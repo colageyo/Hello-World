@@ -1,11 +1,12 @@
-from bs4 import BeautifulSoup
-from datetime import datetime
-from dotenv import load_dotenv
-from json import loads, load
 import os
+import re
+from datetime import datetime
+from json import loads
+
 import pytz
 import requests
-import re
+from bs4 import BeautifulSoup
+from dotenv import load_dotenv
 
 '''
 This module scrapes all event IDs of events listed on
@@ -15,6 +16,7 @@ and calls the Eventbrite API to retrieve event details
 
 if __name__ == '__main__':
     import sys
+
     cwd = os.getcwd()
     sys.path.append(cwd)
 
@@ -51,7 +53,7 @@ SEASONAL_HOLIDAY = "116"
 SPORTS = "108"
 TRAVEL = "109"
 
-#TODO - determine if an event is indoors/outdoors
+# TODO - determine if an event is indoors/outdoors
 ACTIVITIES_TAG = {
     ALL_TAGS: {"artsy", "indoors", "outdoors", "sporty", "romantic", "family-friendly", "geeky", "history", "hungry"},
     BOAT_AIR: {"outdoors"},
@@ -80,14 +82,17 @@ headers = {
     "Authorization": f"Bearer {EVENTBRITE_API_KEY}"
 }
 
+
 def extract_html(path):
     page = requests.get(EVENTBRITE_URL + path)
     return BeautifulSoup(page.text, "html.parser")
+
 
 def extract_event_id(event):
     link = event.get('href')
     match = re.match('.*-([0-9]+)\?.*', link)
     return match.group(1)
+
 
 def scrape_event_ids():
     eventbrite = extract_html(SEARCH_PATH)
@@ -98,6 +103,7 @@ def scrape_event_ids():
     # get event ids from tags
     return set(map(extract_event_id, tags))
 
+
 def retrieve_event(event_id):
     params = {
         "event_ids": event_id,
@@ -107,20 +113,21 @@ def retrieve_event(event_id):
     response = loads(requests.get(EVENTBRITE_API + EVENTS_PATH, params=params, headers=headers).text)["events"][0]
 
     return Event(
-        event_id = f"EVENTBRITE-{event_id}",
-        url = response["url"],
-        start_time = datetime.strptime(response["start"]["utc"], "%Y-%m-%dT%H:%M:%SZ").timestamp(),
-        end_time = datetime.strptime(response["end"]["utc"], "%Y-%m-%dT%H:%M:%SZ").timestamp(),
-        latitude = response["venue"]["latitude"] if response["venue"] is not None else "",
-        longitude = response["venue"]["longitude"] if response["venue"] is not None else "",
-        name = response["name"]["text"],
-        organiser = response["organizer"]["name"],
-        is_free = response["is_free"],
-        is_online = response["online_event"],
-        summary = response["summary"],
-        description_html = response["description"]["html"],
-        tags = ACTIVITIES_TAG.get(response["category_id"])
+        event_id=f"EVENTBRITE-{event_id}",
+        url=response["url"],
+        start_time=datetime.strptime(response["start"]["utc"], "%Y-%m-%dT%H:%M:%SZ").timestamp(),
+        end_time=datetime.strptime(response["end"]["utc"], "%Y-%m-%dT%H:%M:%SZ").timestamp(),
+        latitude=response["venue"]["latitude"] if response["venue"] is not None else "",
+        longitude=response["venue"]["longitude"] if response["venue"] is not None else "",
+        name=response["name"]["text"],
+        organiser=response["organizer"]["name"],
+        is_free=response["is_free"],
+        is_online=response["online_event"],
+        summary=response["summary"],
+        description_html=response["description"]["html"],
+        tags=ACTIVITIES_TAG.get(response["category_id"])
     )
+
 
 def get_events():
     event_ids = scrape_event_ids()
@@ -128,14 +135,15 @@ def get_events():
     # call Eventbrite API
     return list(map(retrieve_event, event_ids))
 
+
 if __name__ == '__main__':
     for event in get_events():
         print('----------------------------')
         print("Name: " + event._name)
         print("Time: "
-            + str(datetime.fromtimestamp(event._start_time, tz=pytz.timezone('Australia/Sydney')))
-            + " to "
-            + str(datetime.fromtimestamp(event._end_time,  tz=pytz.timezone('Australia/Sydney'))))
+              + str(datetime.fromtimestamp(event._start_time, tz=pytz.timezone('Australia/Sydney')))
+              + " to "
+              + str(datetime.fromtimestamp(event._end_time, tz=pytz.timezone('Australia/Sydney'))))
         if event._organiser is not None:
             print("Organiser: " + event._organiser)
         print("Summary: " + event._summary)

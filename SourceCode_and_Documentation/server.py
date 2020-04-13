@@ -1,28 +1,64 @@
-from json import dumps
-from flask import Flask, request, jsonify
-from flask_cors import CORS
-from src.eventbrite import get_events as eventbrite_events
+import http
+import json
+import logging
+import sys
 
-APP = Flask(__name__)
+import flask
 
-def sendSuccess(data):
-    return dumps(data)
+import src.eventbrite
+import src.events_cache
+import src.events_filter
 
-def sendError(message):
-    return dumps({
-        '_error' : message
+DEFAULT_PORT_NUM = 5000
+
+APP = flask.Flask(__name__)
+
+
+def send_success(data):
+    return json.dumps(data)
+
+
+def send_error(message):
+    return json.dumps({
+        '_error': message
     })
 
-@APP.route('/events/get_all', methods = ['GET'])
-def get_all_events():
-    events = list(map(lambda e : e.get_json(), eventbrite_events()))
+
+@APP.route('/events/recommended', methods=['POST'])
+def get_recommended_events():
+    if flask.request.content_type != 'application/json':
+        flask.abort(http.HTTPStatus.BAD_REQUEST)
+
+    request_data = flask.request.json
+
+    tags = set()
 
     try:
-        return sendSuccess({
+        tags = set(request_data['tags'])
+    except KeyError:
+        logging.error("Failed to retrieve tags from malformed request body.")
+        flask.abort(http.HTTPStatus.BAD_REQUEST)
+
+    collected_events = src.events_cache.load_events()
+    filtered_events = src.events_filter.filter_events(collected_events, tags)
+
+    try:
+        return send_success([event.get_serializable_json() for event in filtered_events])
+    except ValueError as e:
+        return send_error(e.args)
+
+
+@APP.route('/events/get_all', methods=['GET'])
+def get_all_events():
+    events = list(map(lambda event: event.get_json(), src.eventbrite.get_events()))
+
+    try:
+        return send_success({
             "events": events
         })
     except ValueError as e:
-        return sendError(e.args)
+        return send_error(e.args)
+
 
 if __name__ == '__main__':
-    APP.run(port=(sys.argv[1] if len(sys.argv) > 1 else 5000))
+    APP.run(port=(sys.argv[1] if len(sys.argv) > 1 else DEFAULT_PORT_NUM))
