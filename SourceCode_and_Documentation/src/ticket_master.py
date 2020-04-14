@@ -80,6 +80,6 @@ def parseInfoToEvent(info, classification):
         price = info['priceRanges'][0]['min']
     
     event_info = Event(info['id'], url, start_time, end_time, latitude, longitude, 
-        info['name'], organiser, price, is_online, summary, "", rating, image, tags)
+        info['name'], organiser, price, is_online, summary, "", tags, rating, image)
 
     return event_info
