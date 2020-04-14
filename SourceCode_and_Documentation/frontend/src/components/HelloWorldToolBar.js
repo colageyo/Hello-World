@@ -1,7 +1,6 @@
 import React from 'react';
 import './HelloWorldToolBar.css';
-import './App.css';
-import Logo from './favicon.ico'
+import Logo from '../favicon.ico'
 
 function HelloWorldToolBar() {
     return (
