@@ -100,7 +100,7 @@ def parseVenueToEvent(venue, category):
     end_time = ""
     url = ""
     description = ""
-    price = ""
+    price = 0
     is_online = True
     rating = 0
     image = ""
@@ -130,3 +130,4 @@ def parseVenueToEvent(venue, category):
         ['lng'], venue['name'], "", price, is_online, description, "", rating, image, CATEGORIES_TAGS.get(CATEGORIES.get(category)))
     
     return event_obj
+    

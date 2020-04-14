@@ -1,6 +1,6 @@
 class Event:
     def __init__(self, event_id, url, start_time, end_time, latitude, longitude, name, organiser, price, is_online,
-                 summary, description_html, rating, image, tags=[]):
+                 summary, description_html, rating = 0, image = "", tags=[]):
         self._event_id = event_id
         self._url = url
         self._start_time = start_time

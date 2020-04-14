@@ -55,8 +55,8 @@ def parseInfoToEvent(info, classification):
     latitude = ""
     longitude = ""
     is_online = True
-    rating = ""
-    price = False 
+    rating = 0
+    price = 0 
     image = ""
     if info['dates']['status']['code'] == 'cancelled':
         is_online = False
