@@ -1,0 +1,13 @@
+.contact-us-outer-container {
+    min-width: 100%;
+    display: flex;
+    justify-content: space-around;
+}
+
+#title {
+    font-size: 30px;
+}
+
+.contact-us-inner-container {
+
+}
