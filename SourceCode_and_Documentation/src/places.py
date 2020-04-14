@@ -100,7 +100,7 @@ def parseVenueToEvent(venue, category):
     end_time = ""
     url = ""
     description = ""
-    price = False
+    price = ""
     is_online = True
     rating = 0
     image = ""

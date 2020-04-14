@@ -55,8 +55,9 @@ def parseInfoToEvent(info, classification):
     latitude = ""
     longitude = ""
     is_online = True
-    is_free = False  #this parameter is always false in ticketmaster API because ticketmaster only returns events which have tickets.
-    
+    rating = ""
+    price = False 
+    image = ""
     if info['dates']['status']['code'] == 'cancelled':
         is_online = False
     if 'dates' in info:
@@ -72,8 +73,13 @@ def parseInfoToEvent(info, classification):
         organiser = info['promoter']['name']
     if 'url' in info:
         url = info['url']
+    if 'images' in info:
+        if 'url' in info['images'][0]:
+            image = info['images'][0]['url']
+    if 'priceRanges' in info:
+        price = info['priceRanges'][0]['min']
     
     event_info = Event(info['id'], url, start_time, end_time, latitude, longitude, 
-        info['name'], organiser, is_free, is_online, summary, tags, [])
+        info['name'], organiser, price, is_online, summary, "", rating, image, tags)
 
     return event_info
