@@ -57,6 +57,7 @@ def parseInfoToEvent(info, classification):
     is_online = True
     rating = 0
     price = 0 
+    price_tier = 0
     image = ""
     if info['dates']['status']['code'] == 'cancelled':
         is_online = False
@@ -80,6 +81,6 @@ def parseInfoToEvent(info, classification):
         price = info['priceRanges'][0]['min']
     
     event_info = Event(info['id'], url, start_time, end_time, latitude, longitude, 
-        info['name'], organiser, price, is_online, summary, "", tags, rating, image)
+        info['name'], organiser, price, is_online, summary, "", tags, price_tier, rating, image)
 
     return event_info

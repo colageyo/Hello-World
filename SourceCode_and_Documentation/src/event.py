@@ -1,6 +1,6 @@
 class Event:
     def __init__(self, event_id, url, start_time, end_time, latitude, longitude, name, organiser, price, is_online,
-                 summary, description_html, tags=[], rating = 0, image = ""):
+                 summary, description_html, tags=[], price_tier = 0, rating = 0, image = ""):
         self._event_id = event_id
         self._url = url
         self._start_time = start_time
@@ -13,9 +13,10 @@ class Event:
         self._is_online = is_online
         self._summary = summary
         self._description_html = description_html
+        self._tags = tags
+        self._price_tier = price_tier
         self._rating = rating
         self._image = image
-        self._tags = tags
 
     @property
     def events_id(self):
@@ -116,6 +117,14 @@ class Event:
     @tags.setter
     def tags(self, value):
         self._tags = value
+    
+    @property
+    def price_tier(self):
+        return self._price_tier
+
+    @price_tier.setter
+    def price_tier(self, value):
+        self._price_tier = value
 
     @property
     def rating(self):
@@ -161,9 +170,10 @@ class Event:
             "is_online": self._is_online,
             "summary": self._summary,
             "description_html": self._description_html,
+            "tags": self._tags,
+            "price_tier": self._price_tier,
             "rating": self._rating,
-            "image": self._image,
-            "tags": self._tags
+            "image": self._image
         }
 
     def get_serializable_json(self):

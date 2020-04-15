@@ -101,6 +101,7 @@ def parseVenueToEvent(venue, category):
     url = ""
     description = ""
     price = 0
+    price_tier = 0
     is_online = True
     rating = 0
     image = ""
@@ -116,7 +117,7 @@ def parseVenueToEvent(venue, category):
     if 'description' in venue:
         description = venue['description']
     if 'price' in venue:
-        price = venue['price']['tier']
+        price_tier = venue['price']['tier']
     if 'photos' in venue:
         if 'groups' in venue['photos']:
             group = venue['photos']['groups'][0]
@@ -127,6 +128,6 @@ def parseVenueToEvent(venue, category):
         rating = venue['rating']
     
     event_obj = Event(venue['id'], url,start_time, end_time, venue['location']['lat'], venue['location']
-        ['lng'], venue['name'], "", price, is_online, description, "", CATEGORIES_TAGS.get(CATEGORIES.get(category)), rating, image)
+        ['lng'], venue['name'], "", price, is_online, description, "", CATEGORIES_TAGS.get(CATEGORIES.get(category)), price_tier, rating, image)
     
     return event_obj
