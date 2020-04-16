@@ -17,7 +17,7 @@ class HomePage extends Component {
                 <div className='column'>
                     <Banner/>
                 </div>
-                <img className='closing-icon' src={ClosingIcon} onClick="collapseBanner()" />
+                <img className='closing-icon' src={ClosingIcon} onClick={()=>collapseBanner()} />
             </div>
         </div>
 
@@ -59,7 +59,7 @@ class HomePage extends Component {
 }
 
 function collapseBanner() {
-    document.getElementById("banner-main-container").style.display = "none";
+    document.getElementsByClassName("banner-main-container")[0].style.display = "none";
 }
 
 export default HomePage;
