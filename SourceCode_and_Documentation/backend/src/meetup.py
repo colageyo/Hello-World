@@ -118,6 +118,9 @@ def normalise_response(response, category_id):
     start_time = int(response["time"])
     duration = int(response["duration"]) if "duration" in response else THREE_HOURS_IN_SECONDS
     tags = get_activity_tags(response, category_id)
+    image = ""
+    if "photo_url" in response:
+        image = re.sub("global", "highres", response["photo_url"])
     return Event(
         event_id = f"MEETUP-{response['event_url']}",
         url = response['event_url'],
@@ -127,11 +130,12 @@ def normalise_response(response, category_id):
         longitude = float(response["venue"]["lon"]) if "venue" in response else "",
         name = response["name"].strip(),
         organiser = response["group"]["name"],
-        is_free = int(response["fee"]["amount"]) > 0 if "fee" in response else True,
+        price = float(response["fee"]["amount"]) if "fee" in response else 0,
         is_online = is_event_online(response),
         summary = "",
         description_html = response["description"] if "description" in response else "",
         tags = tags,
+        image = image
     )
 
 def get_meetups():
@@ -149,6 +153,7 @@ if __name__ == '__main__':
     for meetup in get_meetups():
         print('----------------------------')
         print("Name: " + meetup._name)
+        print("URL: " + str(meetup._url))
         print("Time: "
             + str(datetime.fromtimestamp(meetup._start_time, tz=pytz.timezone('Australia/Sydney')))
             + " to "
@@ -156,6 +161,8 @@ if __name__ == '__main__':
         if meetup._organiser is not None:
             print("Organiser: " + meetup._organiser)
         print("Summary: " + meetup._summary)
-        print("Is free? " + str(meetup._is_free))
+        print("Price? " + str(meetup._price))
         print("Is online? " + str(meetup._is_online))
         print("Tags: " + str(meetup._tags))
+        if meetup._image is not "":
+            print("Image: " + str(meetup._image))
