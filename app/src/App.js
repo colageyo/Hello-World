@@ -13,16 +13,12 @@ import HomePage from './HomePage';
 class App extends Component {
   render() {
     return (
-      
       <Router> 
       <div className="App">
-     
       <HelloWorldToolBar />
         <Route exact path='/' component={HomePage} />
-      
       </div>
       </Router>
-
     );
   }
 }
