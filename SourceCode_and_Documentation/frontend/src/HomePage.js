@@ -6,14 +6,9 @@ import {MoodButton} from './MoodButton';
 class HomePage extends Component {
   render() {
     return (
-      
+
     <div className="body-main-container">
-        <div ClassName="banner-container">
-            <div ClassName="text banner">
-                Stay safe in these difficult times. 
-            </div>
-        </div>
-        
+
         <div className="body-inner-container">
             <div className="left-container">
                 <div className="body-text-container">
