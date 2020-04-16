@@ -42,17 +42,17 @@
 
 .top-button-container{
     display: flex;
-    min-width: 20%;
+    min-width: 20px;
 }
 
 .middle-button-container{
     display: flex;
-    min-width: 20%;
+    min-width: 20px;
 }
 
 .bottom-button-container{
     display: flex;
-    min-width: 20%;
+    min-width: 20px;
 }
 
 .body-text-container{
