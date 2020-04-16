@@ -19,7 +19,6 @@ class App extends Component {
         <Route exact path='/' component={HomePage} />
       </div>
       </Router>
-
     );
   }
 }
