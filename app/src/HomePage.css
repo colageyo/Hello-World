@@ -26,7 +26,6 @@
     display: flex;
     justify-content: space-between;
     min-width: 70%;
-    /* align-items: center; */
 }
 
 .body-image-container{
@@ -71,4 +70,3 @@
     text-align: 'left';
     font-size: 41.5px;
 }
-
