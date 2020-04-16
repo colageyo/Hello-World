@@ -100,6 +100,7 @@ def parseVenueToEvent(venue, category):
     end_time = ""
     url = ""
     description = ""
+    # The four square API only has a price tier, so the price will remain an arbitrary value. 
     price = 0
     price_tier = 0
     is_online = True
