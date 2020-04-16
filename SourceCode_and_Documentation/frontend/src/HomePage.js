@@ -1,13 +1,25 @@
 import React, { Component } from 'react';
 import './HomePage.css';
 import Background from './background_image.png';
+import Banner from './Banner';
 import {MoodButton} from './MoodButton';
+import ClosingIcon from './closing-icon.png';
+
 
 class HomePage extends Component {
   render() {
     return (
 
     <div className="body-main-container">
+        
+        <div className='banner-main-container' style={{display: 'block'}}> 
+            <div className='row'>
+                <div className='column'>
+                    <Banner/>
+                </div>
+                <img className='closing-icon' src={ClosingIcon} onClick="collapseBanner()" />
+            </div>
+        </div>
 
         <div className="body-inner-container">
             <div className="left-container">
@@ -44,6 +56,10 @@ class HomePage extends Component {
 
     );
   }
+}
+
+function collapseBanner() {
+    document.getElementById("banner-main-container").style.display = "none";
 }
 
 export default HomePage;
