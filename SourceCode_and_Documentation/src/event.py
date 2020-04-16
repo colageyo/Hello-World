@@ -1,6 +1,6 @@
 class Event:
-    def __init__(self, event_id, url, start_time, end_time, latitude, longitude, name, organiser, is_free, is_online,
-                 summary, description_html, tags=[], reviews=[]):
+    def __init__(self, event_id, url, start_time, end_time, latitude, longitude, name, organiser, price, is_online,
+                 summary, description_html, tags=[], price_tier = 0, rating = 0, image = ""):
         self._event_id = event_id
         self._url = url
         self._start_time = start_time
@@ -9,12 +9,14 @@ class Event:
         self._longitude = longitude
         self._name = name
         self._organiser = organiser
-        self._is_free = is_free
+        self._price = price
         self._is_online = is_online
         self._summary = summary
         self._description_html = description_html
         self._tags = tags
-        self._reviews = reviews
+        self._price_tier = price_tier
+        self._rating = rating
+        self._image = image
 
     @property
     def events_id(self):
@@ -77,12 +79,12 @@ class Event:
         self._organiser = value
 
     @property
-    def is_free(self):
-        return self._is_free
+    def price(self):
+        return self._price
 
-    @is_free.setter
-    def is_free(self, value):
-        self._is_free = value
+    @price.setter
+    def price(self, value):
+        self._price = value
 
     @property
     def is_online(self):
@@ -115,14 +117,30 @@ class Event:
     @tags.setter
     def tags(self, value):
         self._tags = value
+    
+    @property
+    def price_tier(self):
+        return self._price_tier
+
+    @price_tier.setter
+    def price_tier(self, value):
+        self._price_tier = value
 
     @property
-    def reviews(self):
-        return self._reviews
+    def rating(self):
+        return self._rating
 
-    @reviews.setter
-    def reviews(self, value):
-        self._reviews = value
+    @rating.setter
+    def rating(self, value):
+        self._rating = value
+
+    @property
+    def image(self):
+        return self._image
+
+    @image.setter
+    def image(self, value):
+        self._image = value
 
     def is_of_type(self, t):
         return t in self.tags or t in self.description_html
@@ -148,12 +166,14 @@ class Event:
             },
             "name": self._name,
             "organiser": self._organiser,
-            "is_free": self._is_free,
+            "price": self._price,
             "is_online": self._is_online,
             "summary": self._summary,
             "description_html": self._description_html,
             "tags": self._tags,
-            "reviews": self._reviews
+            "price_tier": self._price_tier,
+            "rating": self._rating,
+            "image": self._image
         }
 
     def get_serializable_json(self):

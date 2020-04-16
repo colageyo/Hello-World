@@ -1,8 +1,5 @@
-import json
-
-import requests
-
-from src.event import Event
+import json, requests
+from event import Event
 
 URL = 'https://api.foursquare.com/v2/venues/search'
 PREMIUM_URL = 'https://api.foursquare.com/v2/venues/'
@@ -30,7 +27,7 @@ CATEGORIES = {
     '4bf58dd8d48988d125941735': 'tech-startup',
     '4bf58dd8d48988d193941735': 'water-park',
     '4bf58dd8d48988d17b941735': 'zoo'
-}
+    }   
 
 # A dict containing all the relevant tags to the items in
 # CATEGORIES dict.
@@ -55,12 +52,12 @@ CATEGORIES_TAGS = {
     'tech-startup': ['indoors', 'geeky'],
     'water-park': ['outdoors', 'family-friendly', 'sporty'],
     'zoo': ['outdoors', 'family-friendly', 'geeky', 'historic']
-}
+    }
 
 
 def get_all_events():
     event_list = []
-    count = 0
+    
     for category in CATEGORIES.keys():
         # params include ll as the latitude and longitude of the city or suburb to search in.
         client_info = {
@@ -71,8 +68,8 @@ def get_all_events():
             'limit': 28,
             'radius': '100000',
             'll': '-33.8671417236, 151.2071075439'
-        }
-
+            }
+    
         response = requests.get(url=URL, params=client_info)
         data = json.loads(response.text)
         venues = data['response']['venues']
@@ -88,12 +85,12 @@ def get_event_details(id):
         'client_id': 'DEPF4JDYDGBETTC5RDGFWUZTZIB2DDASK4XGU2H0POZSUGO0',
         'client_secret': 'XZP10N5EEDLDVNT04WPSFYUMWPX20LVCFGMC2JMWKXHRG2AI',
         'v': '20180604'
-    }
+        }
     call_url = PREMIUM_URL + id
-
+            
     premium_response = requests.get(url=call_url, params=premium_client_info)
     premium_data = json.loads(premium_response.text)
-
+            
     return premium_data['response']['venue']
 
 
@@ -103,9 +100,14 @@ def parseVenueToEvent(venue, category):
     end_time = ""
     url = ""
     description = ""
-    price = True
+    # The four square API only has a price tier, so the price will remain an arbitrary value. 
+    price = 0
+    # The price_tier values are in the range (1-4) where '1' is for the pocket friendly places and '4' is for the most expensive places. 
+    price_tier = 0
     is_online = True
-
+    rating = 0
+    image = ""
+    
     if 'hours' in venue:
         time = venue['hours']['timeframes']
         line = str(time[0]['open'][0]['renderedTime'])
@@ -117,9 +119,17 @@ def parseVenueToEvent(venue, category):
     if 'description' in venue:
         description = venue['description']
     if 'price' in venue:
-        price = False
-
-    event_obj = Event(venue['id'], url, start_time, end_time, venue['location']['lat'], venue['location']
-    ['lng'], venue['name'], "", price, is_online, description, CATEGORIES_TAGS.get(CATEGORIES.get(category)), [])
-
+        price_tier = venue['price']['tier']
+    if 'photos' in venue:
+        if 'groups' in venue['photos']:
+            group = venue['photos']['groups'][0]
+            if 'items' in group:
+                item = group['items'][0]
+                image = item['prefix'] + str(item['width']) + 'x' + str(item['height']) + item['suffix']
+    if 'rating' in venue:
+        rating = venue['rating']
+    
+    event_obj = Event(venue['id'], url,start_time, end_time, venue['location']['lat'], venue['location']
+        ['lng'], venue['name'], "", price, is_online, description, "", CATEGORIES_TAGS.get(CATEGORIES.get(category)), price_tier, rating, image)
+    
     return event_obj
