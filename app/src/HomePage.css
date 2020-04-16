@@ -1,14 +1,14 @@
 
 .background{
     position: relative;
-    height: 512px;
+    height: 20%;
 }
 
 .body-main-container {
     align-items: center;
     display: grid;
-    justify-content: space-around;
-    min-width: 70%;
+    justify-content: space-evenly;
+
 }
 
 .banner-container{
@@ -26,7 +26,6 @@
     display: flex;
     justify-content: space-between;
     min-width: 70%;
-    /* align-items: center; */
 }
 
 .body-image-container{
@@ -35,8 +34,9 @@
 }
 
 .left-container{
-    margin-left: 100px;
+    margin-left: 200px;
     padding-top: 250px;
+    align-items: center;
 }
 
 .button-container{
@@ -46,20 +46,24 @@
 
 .top-button-container{
     display: flex;
+    min-width: 50px;
 }
 
 .middle-button-container{
     display: flex;
+    min-width: 50px;
 }
 
 .bottom-button-container{
     display: flex;
+    min-width: 50px;
 }
 
 .body-text-container{
     display: absolute;
-    padding-left: 7px;
-    justify-content: space-evenly;
+    justify-content: center;
+    align-items: center;
+    min-width: 50%;
 }
 
 .large-text{
@@ -70,5 +74,6 @@
 .small-text{
     text-align: 'left';
     font-size: 41.5px;
+    width: 700px;
 }
 
