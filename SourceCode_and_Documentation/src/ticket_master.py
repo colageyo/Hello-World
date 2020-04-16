@@ -57,6 +57,7 @@ def parseInfoToEvent(info, classification):
     is_online = True
     rating = 0
     price = 0 
+    # The ticket master API only has a price, so the price_tier will remain an arbitrary value.
     price_tier = 0
     image = ""
     

@@ -102,6 +102,7 @@ def parseVenueToEvent(venue, category):
     description = ""
     # The four square API only has a price tier, so the price will remain an arbitrary value. 
     price = 0
+    # The price_tier values are in the range (1-4) where '1' is for the pocket friendly places and '4' is for the most expensive places. 
     price_tier = 0
     is_online = True
     rating = 0
