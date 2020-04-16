@@ -16,7 +16,6 @@ class App extends Component {
       
       <Router> 
       <div className="App">
-     
       <HelloWorldToolBar />
         <Route exact path='/' component={HomePage} />
       
