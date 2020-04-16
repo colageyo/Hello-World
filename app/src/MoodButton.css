@@ -6,7 +6,7 @@
     height: 40px;
     border-radius: 10px;
     width: fit-content;
-    margin: 20px;
+    margin: 7px;
 }
 
 .mood-button:hover {
@@ -16,7 +16,7 @@
 
 .mood-text {
     color: #000000;
-    font-size: 1rem;
+    font-size: 1.25rem;
     letter-spacing: .05rem;
     padding: 0 20px;
 }
