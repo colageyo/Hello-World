@@ -46,8 +46,9 @@ def get_all_events():
 
 
 def parseInfoToEvent(info, classification):
-    start_time = 0
-    end_time = 0
+    start_time = 0.0
+    end_time = 0.0
+
     url = ""
     summary = ""
     organiser = ""
