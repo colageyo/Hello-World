@@ -1,6 +1,5 @@
-import json, requests
+import json, requests, datetime
 from event import Event
-from datetime import datetime, timedelta
 
 URL = 'https://app.ticketmaster.com/discovery/v2/events'
 API_KEY = 's1zvxw6AwOPPr7ej3vaA4EykE2LeO0vU'
@@ -46,14 +45,15 @@ def get_all_events():
 
 
 def parseInfoToEvent(info, classification):
-    start_time = ""
-    end_time = ""
+    start_time = 0.0
+    end_time = 0.0
+
     url = ""
     summary = ""
     organiser = ""
     tags = CLASSIFICATIONS.get(classification)
-    latitude = ""
-    longitude = ""
+    latitude = 0.0
+    longitude = 0.0
     is_online = True
     rating = 0
     price = 0 
@@ -66,10 +66,13 @@ def parseInfoToEvent(info, classification):
     if 'dates' in info:
         if 'start' in info['dates']:
             if 'dateTime' in info['dates']['start']:
-                start_time = info['dates']['start']['dateTime']
+                dt = datetime.datetime.strptime(info['dates']['start']['dateTime'], '%Y-%m-%dT%H:%M:%SZ')
+                start_time = dt.timestamp()
+                end_time = (dt + datetime.timedelta(hours=4)).timestamp()
+
     if 'location' in info['_embedded']['venues'][0]: 
-        latitude = info['_embedded']['venues'][0]['location']['latitude']
-        longitude = info['_embedded']['venues'][0]['location']['longitude']
+        latitude = float(info['_embedded']['venues'][0]['location']['latitude'])
+        longitude = float(info['_embedded']['venues'][0]['location']['longitude'])
     if 'info' in info:
         summary = info['info']
     if 'promoter' in info:
