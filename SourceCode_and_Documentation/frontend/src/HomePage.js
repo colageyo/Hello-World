@@ -12,7 +12,7 @@ class HomePage extends Component {
 
     <div className="body-main-container">
         
-        <div className='banner-main-container' style={{display: 'block'}}> 
+        <div className='banner-main-container' > 
             <div className='row'>
                 <div className='column'>
                     <Banner/>
