@@ -1,6 +1,5 @@
-import json, requests
+import json, requests, datetime
 from event import Event
-import datetime
 
 URL = 'https://api.foursquare.com/v2/venues/search'
 PREMIUM_URL = 'https://api.foursquare.com/v2/venues/'

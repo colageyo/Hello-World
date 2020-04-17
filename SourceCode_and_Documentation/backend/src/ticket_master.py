@@ -1,6 +1,5 @@
-import json, requests
+import json, requests, datetime
 from event import Event
-import datetime
 
 URL = 'https://app.ticketmaster.com/discovery/v2/events'
 API_KEY = 's1zvxw6AwOPPr7ej3vaA4EykE2LeO0vU'
