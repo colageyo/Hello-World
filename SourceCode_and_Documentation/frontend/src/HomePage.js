@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import './HomePage.css';
-import Background from './background_image.png';
 import Banner from './Banner';
 import {MoodButton} from './MoodButton';
+import './HomePage.css';
+import Background from './background_image.png';
 import ClosingIcon from './closing-icon.png';
 
 
