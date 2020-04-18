@@ -1,58 +1,46 @@
+.home-page {
+    position: relative;
+    flex-grow: 1;
+}
 
-
-.body-main-container {
+.home-container{
+    z-index: 100;
+    position: absolute;
     align-items: center;
-    display: grid;
-    justify-content: space-around;
-
+    width: 100%;
+    margin-top: 50px;
 }
 
-.body-inner-container{
-    display: flex;
-    min-width: 70%;
-    justify-content: space-between;
+@media(min-width: 600px) {
+    .home-container {
+        margin-top: 100px;
+        width: 400px;
+    }
 }
 
-.body-image-container{
-    margin-top: 14%;
+@media(min-width: 900px) {
+    .home-container {
+        margin-top: 100px;
+        width: 600px;
+    }
 }
 
-.left-container{
-    align-items: center;
-    min-width: 36%;
-    margin-left: 14.2%;
-    margin-top: 11%;
+@media(min-width: 1300px) {
+    .home-container {
+        margin-top: 150px;
+        width: 700px;
+    }
 }
 
-.banner-container{
-    margin: 10%;
-    background-color: #e6e6e6;
+.home-text{
+    margin: 7px;
+    min-width: 80%; 
 }
 
 .button-container{
-    display: absolute;
+    display: flex;
+    flex-wrap: wrap;
     margin-top: 2%;
-}
-
-.top-button-container{
-    display: flex;
-    min-width: 20px;
-}
-
-.middle-button-container{
-    display: flex;
-    min-width: 20px;
-}
-
-.bottom-button-container{
-    display: flex;
-    min-width: 20px;
-}
-
-.body-text-container{
-    display: absolute;
-    margin: 7px;
-    min-width: 80%; 
 }
 
 .large-text{
@@ -65,8 +53,11 @@
     font-size: 41.5px;
 }
 
-.background{
-    height: 20%;
+.home-background {
+    position: absolute;
+    bottom: 0;
 }
 
-
+.home-image{
+    width: 100%;
+}

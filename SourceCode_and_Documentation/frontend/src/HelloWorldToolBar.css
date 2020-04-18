@@ -2,10 +2,10 @@
   height: 55px;
 }
 
-.main-container {
-  align-items: center;
-  display: flex;
-  justify-content: space-around;
+.nav-bar {
+    padding-top: 10px;
+    display: flex;
+    justify-content: space-between;
 }
 
 .inner-container {

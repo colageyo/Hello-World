@@ -5,13 +5,12 @@ import './App.css';
 import Logo from './favicon.ico';
 
 function HelloWorldToolBar() {
-  return (
-    <div className="main-container">
-      <div className="inner-container">
+    return (
+      <div className="nav-bar">
         <Link
           to='/'
         >
-          <img className="logo" src={Logo} alt='Logo'/>
+          <img className="logo" src={Logo}/>
         </Link>
         <div className="text-container">
           <div className="text tool-bar-text button">
@@ -21,13 +20,10 @@ function HelloWorldToolBar() {
               Activities and Events
             </Link>
           </div>
-          <div className="text tool-bar-text button">
-            Contact Us
-          </div>
+          <div className="text tool-bar-text button">Contact Us</div>
         </div>
       </div>
-    </div>
-  );
+    );
 }
 
 export default HelloWorldToolBar;
