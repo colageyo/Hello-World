@@ -12,7 +12,7 @@
     display: flex;
     justify-content: space-between;
     min-width: 70%;
-    margin-top: 10px;
+    margin: 15px 0;
 }
 
 .text-container {
@@ -26,7 +26,6 @@
 }
 
 .button {
-    /* border-radius: 10rem; */
     cursor: pointer;
     display: inline-block;
     font-size: 1rem;

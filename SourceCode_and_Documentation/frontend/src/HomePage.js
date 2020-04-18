@@ -1,13 +1,21 @@
 import React, { Component } from 'react';
+import Banner from './Banner';
+import './Banner.css'
+import {MoodButton} from './MoodButton';
 import './HomePage.css';
 import Background from './background_image.png';
-import {MoodButton} from './MoodButton';
+import ClosingIcon from './closing-icon.png';
+
+
 
 class HomePage extends Component {
-  render() {
+  
+    render() {
     return (
 
     <div className="body-main-container">
+        
+        <Banner/>
 
         <div className="body-inner-container">
             <div className="left-container">
@@ -45,5 +53,6 @@ class HomePage extends Component {
     );
   }
 }
+
 
 export default HomePage;
