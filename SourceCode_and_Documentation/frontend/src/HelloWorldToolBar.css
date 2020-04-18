@@ -1,11 +1,11 @@
 .logo {
-    height: 55px;
+  height: 55px;
 }
 
 .main-container {
-    align-items: center;
-    display: flex;
-    justify-content: space-around;
+  align-items: center;
+  display: flex;
+  justify-content: space-around;
 }
 
 .inner-container {
@@ -16,13 +16,13 @@
 }
 
 .text-container {
-    align-items: center;
-    display: flex;
+  align-items: center;
+  display: flex;
 }
 
 .tool-bar-text {
-    margin-left: 50px;
-    padding: 3px;
+  margin-left: 50px;
+  padding: 3px;
 }
 
 .button {
@@ -39,17 +39,17 @@
 
 
 .button:before {
-    content: "";
-    position: absolute;
-    width: 0;
-    height: 2px;
-    bottom: 0;
-    background-color: #000;
-    visibility: hidden;
-    transition: all 0.3s ease-in-out;
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: 0;
+  background-color: #000;
+  visibility: hidden;
+  transition: all 0.3s ease-in-out;
 }
 
-.button:hover:before{
-    visibility: visible;
-    width: 100%;
+.button:hover:before {
+  visibility: visible;
+  width: 100%;
 }

@@ -3,15 +3,15 @@ import { CovidDialog } from './CovidDialog';
 import "./MoodButton.css";
 
 const icons = {
-  delicious: "🍔",
-  artsy: "🎨",
-  sporty: "⚽",
-  romantic: "💖",
-  outdoors: "🌞",
-  indoors: "🚪",
-  geeky: "🎮",
-  historic: "🏛️",
-  "family-friendly": "🧒",
+  delicious: '🍔',
+  artsy: '🎨',
+  sporty: '⚽',
+  romantic: '💖',
+  outdoors: '🌞',
+  indoors: '🚪',
+  geeky: '🎮',
+  historic: '🏛️',
+  'family-friendly': '🧒'
 };
 
 export const MoodButton = (props) => {
@@ -38,5 +38,5 @@ export const MoodButton = (props) => {
         {mood} {icons[mood] || ""}
       </div>
     </div>
-  )
+  );
 };
