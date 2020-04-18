@@ -1,15 +1,24 @@
 .banner-main-container{
     background-color: #e6e6e6;
-    display: flex;
-    padding: 16px 0;
+    display: block;
+    padding: 17px 0;
     position: relative;
-    margin-right: auto;
-    margin-left: auto;
+    margin: 0 auto;
     z-index: 1;
+    width: 100%;
 }
 
-.banner-main-container:before {
-    max-width: 1440px;
-    margin-left: auto;
-    margin-right: auto;
+.row {
+    max-width: 70%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+}
+
+.closing-icon {
+    height: 1%;
+    margin: auto 0;
+    cursor: pointer;
+    justify-content: center;
 }
