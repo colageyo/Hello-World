@@ -6,7 +6,7 @@ import Logo from './favicon.ico';
 
 function HelloWorldToolBar() {
     return (
-      <div className="nav-bar">
+      <div className="nav-bar small-content">
         <Link
           to='/'
         >

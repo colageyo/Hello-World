@@ -33,8 +33,8 @@ const styles = {
 class App extends Component {
   render() {
     // if true, display gradient background
-    const toggleDynamicBackgroundOn = false;
-    const style = "sunset";
+    const toggleDynamicBackgroundOn = true;
+    const style = "rainy";
 
     return (
       <Router>
