@@ -1,6 +1,7 @@
 import React from 'react';
 import Axios from 'axios';
 
+import CategoryBar from './CategoryBar';
 import EventList from './EventList';
 import Map from './Map';
 import './RecommendationPage.css';
@@ -32,6 +33,7 @@ const RecommendationPage = (props) => {
     <div
       className="recommendation-page"
     >
+      <CategoryBar />
       <div className='recommendation-panel'>
         <EventList
           events={events}

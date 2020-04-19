@@ -1,4 +1,4 @@
-import React from "react";
+import React, {Component} from "react";
 import "./CategoryButton.css";
 
 import Artsy from "./icons/artsy.png";
@@ -23,14 +23,25 @@ const icons = {
   sporty: Sporty
 };
 
-export const CategoryButton = props => {
-  const { category, onClick } = props;
+class CategoryButton extends Component {
+    constructor(props) {
+        super(props);
+        this.handleClick = this.handleClick.bind(this);
+    }
 
-  return (
-    <div className="category-button" onClick={onClick}>
-      <div className="category-text text">
-        {category} <img className="category-image" src={icons[category]}></img>
-      </div>
-    </div>
-  );
-};
+    handleClick= () => {
+      this.props.onClick(this.props.category); 
+    }
+
+    render() {
+        return (
+            <div className={this.props.value ? 'category-button click-effect': 'category-button'} onClick={this.handleClick} >
+              <div className="category-text text">
+                {this.props.category} <img className="category-image" src={icons[this.props.category]}></img>
+              </div>
+            </div>
+          );
+    }
+}
+
+export default CategoryButton;

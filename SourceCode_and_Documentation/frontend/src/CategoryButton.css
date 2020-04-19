@@ -17,10 +17,18 @@
 .category-text {
     color: #000000;
     font-size: 1.25rem;
+    user-select: none;
     letter-spacing: .05rem;
     padding: 0 20px;
 }
 
 .category-image {
     max-width: 20px;
+}
+
+.click-effect {
+    border: solid;
+    border-color: grey;
+    background: transparent;
+    border-width: thin;
 }
