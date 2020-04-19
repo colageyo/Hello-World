@@ -21,6 +21,7 @@ class CategoryBar extends Component {
     render() {
         const categoryButtons = categories.map(category => (
             <CategoryButton
+                key={category}
                 category={category}
                 onClick={this.handleClick}
                 value={this.state[category]}
