@@ -4,6 +4,7 @@ import logging
 import sys
 
 import flask
+from flask_cors import CORS
 
 import src.eventbrite
 import src.events_cache
@@ -12,6 +13,7 @@ import src.events_filter
 DEFAULT_PORT_NUM = 5000
 
 APP = flask.Flask(__name__)
+CORS(APP)
 
 
 def send_success(data):
