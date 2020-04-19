@@ -1,5 +1,6 @@
 import React from 'react';
 import './EventList.css';
+import { Event } from './Event';
 
 const EventList = (
   {
@@ -13,22 +14,7 @@ const EventList = (
       {events.length} events and activities just for you
     </p>
     {events.map((event, i) => (
-      <div
-        className='event-item'
-        key={i}
-      >
-        <img
-          src='https://miro.medium.com/max/4250/1*-MklWDSjKS5vWEG5ZYXCww.jpeg'
-          className='picture'
-          alt='Sydney'
-        />
-        <p>
-          {event.name}
-        </p>
-        <p>
-          bruh
-        </p>
-      </div>
+      <Event event={event} key={i} onClick={() => console.log('click!')} />
     ))}
   </div>
 );

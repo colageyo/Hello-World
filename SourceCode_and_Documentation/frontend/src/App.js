@@ -33,7 +33,7 @@ const styles = {
 class App extends Component {
   render() {
     // if true, display gradient background
-    const toggleDynamicBackgroundOn = false;
+    const toggleDynamicBackgroundOn = true;
     const style = "sunset";
 
     return (

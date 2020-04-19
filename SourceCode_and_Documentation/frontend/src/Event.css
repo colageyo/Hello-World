@@ -1,0 +1,14 @@
+.event-picture {
+    max-width: 250px;
+    display: inline;
+    float: left;
+    margin-right: 10px;
+}
+
+.event-item {
+    background-color: white;
+    margin-bottom: 10px;
+    height: 150px;
+    padding: 10px;
+    display: flex;
+}

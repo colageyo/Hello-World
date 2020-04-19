@@ -3,16 +3,9 @@
 }
 
 .nav-bar {
-    padding-top: 10px;
+    padding: 10px 0;
     display: flex;
     justify-content: space-between;
-}
-
-.inner-container {
-    display: flex;
-    justify-content: space-between;
-    min-width: 70%;
-    margin: 15px 0;
 }
 
 .text-container {
