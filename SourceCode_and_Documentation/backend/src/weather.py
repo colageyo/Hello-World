@@ -19,9 +19,9 @@ OPENWEATHER_API_KEY = os.getenv("OPENWEATHER_API_KEY")
 WEATHER_API = 'https://api.openweathermap.org/data/2.5/weather'
 
 activity_tags = {
-    "clear": ["outdoors", "sport"],
-    "clouds": ["indoors", "outdoors", "sport"],
-    "drizzle": ["indoors", "sport"],
+    "clear": ["outdoors"],
+    "clouds": ["indoors", "outdoors"],
+    "drizzle": ["indoors"],
     "rain": ["indoors"],
     "snow": ["cozy", "indoors"],
     "thunderstorm": ["cozy", "indoors"]
@@ -157,9 +157,9 @@ def get_weather_by_city(city):
         temp,
         humidity,
         visibility,
-        activity_tags,
+        activity_tags[weather_conditions[0].lower()],
         datetime.fromtimestamp(sunrise),
         datetime.fromtimestamp(sunset),
-        cities['sydney']['coord']['lon'],
-        cities['sydney']['coord']['lat']
+        float(cities['sydney']['coord']['lon']),
+        float(cities['sydney']['coord']['lat'])
     )

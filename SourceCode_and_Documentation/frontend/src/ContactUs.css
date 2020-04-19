@@ -19,7 +19,7 @@
 
 .mobile-container {
     display: flex;
-    flex-direction: column; 
+    flex-direction: column;
 }
 
 input {
@@ -29,7 +29,7 @@ input {
     font-size: 12px;
     transition: box-shadow 0.6s ease;
 }
-  
+
 *, *:before, *:after {
     box-sizing: border-box;
 }
@@ -73,7 +73,7 @@ input:focus {
     transition: all 0.3s ease-in-out;
 }
 
-.button:hover:before{
+.button:hover:before {
     visibility: visible;
     width: 100%;
 }

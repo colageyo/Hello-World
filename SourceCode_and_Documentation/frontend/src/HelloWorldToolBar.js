@@ -1,17 +1,26 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './HelloWorldToolBar.css';
 import './App.css';
-import Logo from './favicon.ico'
+import Logo from './favicon.ico';
 
 function HelloWorldToolBar() {
     return (
-      <div className="main-container">
-        <div className="inner-container">
+      <div className="nav-bar">
+        <Link
+          to='/'
+        >
           <img className="logo" src={Logo}/>
-          <div className="text-container">
-            <div className="text tool-bar-text button">Activities and Events</div>
-            <div className="text tool-bar-text button">Contact Us</div>
+        </Link>
+        <div className="text-container">
+          <div className="text tool-bar-text button">
+            <Link
+              to='/recommend'
+            >
+              Activities and Events
+            </Link>
           </div>
+          <div className="text tool-bar-text button">Contact Us</div>
         </div>
       </div>
     );

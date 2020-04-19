@@ -1,78 +1,63 @@
-
-.background{
+.home-page {
     position: relative;
-    height: 20%;
+    flex-grow: 1;
 }
 
-.body-main-container {
+.home-container{
+    z-index: 100;
+    position: absolute;
     align-items: center;
-    display: grid;
-    justify-content: space-evenly;
-
+    width: 100%;
+    margin-top: 50px;
 }
 
-.banner-container{
-    margin: 20px;
-    background-color: #e6e6e6;
+@media(min-width: 600px) {
+    .home-container {
+        margin-top: 100px;
+        width: 400px;
+    }
 }
 
-.banner {
-    font-size: 20.4px;
-    font-weight: 900;
+@media(min-width: 900px) {
+    .home-container {
+        margin-top: 100px;
+        width: 600px;
+    }
 }
 
-
-.body-inner-container{
-    display: flex;
-    justify-content: space-between;
-    min-width: 70%;
+@media(min-width: 1300px) {
+    .home-container {
+        margin-top: 150px;
+        width: 700px;
+    }
 }
 
-.body-image-container{
-    display: absolute;
-    padding-top: 250px;
-}
-
-.left-container{
-    margin-left: 200px;
-    padding-top: 250px;
-    align-items: center;
+.home-text{
+    margin: 7px;
+    min-width: 80%; 
 }
 
 .button-container{
-    display: absolute;
-    margin-top: 15px;
-}
-
-.top-button-container{
     display: flex;
-    min-width: 50px;
-}
-
-.middle-button-container{
-    display: flex;
-    min-width: 50px;
-}
-
-.bottom-button-container{
-    display: flex;
-    min-width: 50px;
-}
-
-.body-text-container{
-    display: absolute;
-    justify-content: center;
-    align-items: center;
-    min-width: 50%;
+    flex-wrap: wrap;
+    margin-top: 2%;
 }
 
 .large-text{
-    text-align: 'left';
+    text-align: left;
     font-size: 52.3px;
 }
 
 .small-text{
-    text-align: 'left';
+    text-align: left;
     font-size: 41.5px;
-    width: 700px;
+}
+
+.home-background {
+    position: absolute;
+    bottom: 0;
+}
+
+.home-image{
+    width: 100%;
 }

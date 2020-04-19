@@ -163,7 +163,7 @@ def retrieve_event_query(event_id):
     '''Given an event id, construct a JSON object for the batch request'''
     return {
         "method": "GET",
-        "relative_url": f"{EVENTS_PATH}?event_ids={event_id}&expand=venue,organizer,format"
+        "relative_url": f"{EVENTS_PATH}?event_ids={event_id}&expand=logo,venue,organizer,format,ticket_availability"
     }
 
 def get_tags(category_id, format_id):
@@ -175,20 +175,25 @@ def get_tags(category_id, format_id):
 def retrieve_event(response):
     '''Given an Event from an Eventbrite API response, create an Event object'''
     format_id = response["format"]["id"] if response["format"] is not None else None
+    price = 0
+    if "ticket_availability" in response:
+        if "minimum_ticket_price" in response["ticket_availability"] and response["ticket_availability"]["minimum_ticket_price"] is not None:
+            price = float(response["ticket_availability"]["minimum_ticket_price"]["major_value"])
     return Event(
         event_id=f"EVENTBRITE-{response['url']}",
         url=response["url"],
         start_time=datetime.strptime(response["start"]["utc"], "%Y-%m-%dT%H:%M:%SZ").timestamp(),
         end_time=datetime.strptime(response["end"]["utc"], "%Y-%m-%dT%H:%M:%SZ").timestamp(),
-        latitude=response["venue"]["latitude"] if response["venue"] is not None else "",
-        longitude=response["venue"]["longitude"] if response["venue"] is not None else "",
+        latitude=float(response["venue"]["latitude"]) if response["venue"] is not None else "",
+        longitude=float(response["venue"]["longitude"]) if response["venue"] is not None else "",
         name=response["name"]["text"],
         organiser=response["organizer"]["name"],
-        is_free=response["is_free"],
+        price=price,
         is_online=response["online_event"] or is_online(response),
         summary=response["summary"],
         description_html=response["description"]["html"],
-        tags=get_tags(response["category_id"], format_id)
+        tags=get_tags(response["category_id"], format_id),
+        image=response["logo"]["original"]["url"] if response.get("logo") is not None else ""
     )
 
 def get_events():
@@ -235,6 +240,7 @@ if __name__ == '__main__':
         if event._organiser is not None:
             print("Organiser: " + event._organiser)
         print("Summary: " + event._summary)
-        print("Is free? " + str(event._is_free))
+        print("Price? " + str(event._price))
         print("Is online? " + str(event._is_online))
         print("Tags: " + str(event._tags))
+        print("Image: " + str(event._image))

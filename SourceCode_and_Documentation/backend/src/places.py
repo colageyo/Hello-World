@@ -1,5 +1,5 @@
-import json, requests
-from event import Event
+import json, requests, datetime
+from src.event import Event
 
 URL = 'https://api.foursquare.com/v2/venues/search'
 PREMIUM_URL = 'https://api.foursquare.com/v2/venues/'
@@ -69,7 +69,7 @@ def get_all_events():
             'radius': '100000',
             'll': '-33.8671417236, 151.2071075439'
             }
-    
+
         response = requests.get(url=URL, params=client_info)
         data = json.loads(response.text)
         venues = data['response']['venues']
@@ -93,11 +93,23 @@ def get_event_details(id):
             
     return premium_data['response']['venue']
 
+def time_to_unix_time(time_str):
+    if time_str == 'Midnight':
+        dt = str(datetime.datetime.now()).split()[0] + ' ' + '00:00:00'
+    else:
+        if time_str[len(time_str)-2] == 'A':
+            dt = datetime.datetime.strptime(time_str, '%H:%M AM')
+        elif time_str[len(time_str)-2] == 'P':
+            dt = datetime.datetime.strptime(time_str, '%H:%M PM')
+        dt = str(datetime.datetime.now()).split()[0] + ' ' + str(dt).split()[1] 
+    
+    dt = datetime.datetime.strptime(dt, '%Y-%m-%d %H:%M:%S')
+    return dt.timestamp()
 
 def parseVenueToEvent(venue, category):
     time = ""
-    start_time = ""
-    end_time = ""
+    start_time = 0
+    end_time = 0
     url = ""
     description = ""
     # The four square API only has a price tier, so the price will remain an arbitrary value. 
@@ -112,8 +124,8 @@ def parseVenueToEvent(venue, category):
         time = venue['hours']['timeframes']
         line = str(time[0]['open'][0]['renderedTime'])
         line = line.split("–")
-        start_time = line[0]
-        end_time = line[1]
+        start_time = time_to_unix_time(line[0])
+        end_time = time_to_unix_time(line[1])
     if 'url' in venue:
         url = venue['url']
     if 'description' in venue:
@@ -121,7 +133,7 @@ def parseVenueToEvent(venue, category):
     if 'price' in venue:
         price_tier = venue['price']['tier']
     if 'photos' in venue:
-        if 'groups' in venue['photos']:
+        if 'groups' in venue['photos'] and len(venue['photos']['groups']) != 0:
             group = venue['photos']['groups'][0]
             if 'items' in group:
                 item = group['items'][0]
@@ -129,7 +141,7 @@ def parseVenueToEvent(venue, category):
     if 'rating' in venue:
         rating = venue['rating']
     
-    event_obj = Event(venue['id'], url,start_time, end_time, venue['location']['lat'], venue['location']
-        ['lng'], venue['name'], "", price, is_online, description, "", CATEGORIES_TAGS.get(CATEGORIES.get(category)), price_tier, rating, image)
+    event_obj = Event(venue['id'], url,start_time, end_time, float(venue['location']['lat']), float(venue['location']
+        ['lng']), venue['name'], "", price, is_online, description, "", CATEGORIES_TAGS.get(CATEGORIES.get(category)), price_tier, rating, image)
     
     return event_obj

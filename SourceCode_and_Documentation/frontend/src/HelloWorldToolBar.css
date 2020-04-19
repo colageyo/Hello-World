@@ -1,32 +1,31 @@
 .logo {
-    height: 55px;
+  height: 55px;
 }
 
-.main-container {
-    align-items: center;
+.nav-bar {
+    padding-top: 10px;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
 }
 
 .inner-container {
     display: flex;
     justify-content: space-between;
     min-width: 70%;
-    margin-top: 10px;
+    margin: 15px 0;
 }
 
 .text-container {
-    align-items: center;
-    display: flex;
+  align-items: center;
+  display: flex;
 }
 
 .tool-bar-text {
-    margin-left: 50px;
-    padding: 3px;
+  margin-left: 50px;
+  padding: 3px;
 }
 
 .button {
-    /* border-radius: 10rem; */
     cursor: pointer;
     display: inline-block;
     font-size: 1rem;
@@ -40,17 +39,17 @@
 
 
 .button:before {
-    content: "";
-    position: absolute;
-    width: 0;
-    height: 2px;
-    bottom: 0;
-    background-color: #000;
-    visibility: hidden;
-    transition: all 0.3s ease-in-out;
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: 0;
+  background-color: #000;
+  visibility: hidden;
+  transition: all 0.3s ease-in-out;
 }
 
-.button:hover:before{
-    visibility: visible;
-    width: 100%;
+.button:hover:before {
+  visibility: visible;
+  width: 100%;
 }
