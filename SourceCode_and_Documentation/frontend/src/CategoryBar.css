@@ -1,15 +1,15 @@
 .category-bar-scroll-filter {
-    display: flex;
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    overflow-y: hidden;
-    white-space: nowrap;
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  overflow-y: hidden;
+  white-space: nowrap;
 }
 
 .tag {
-    flex: 0 0 auto;
+  flex: 0 0 auto;
 }
 
 ::-webkit-scrollbar {
-    width: 0px;
+  width: 0px;
 }
