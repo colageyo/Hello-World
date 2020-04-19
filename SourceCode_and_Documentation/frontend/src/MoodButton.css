@@ -3,10 +3,12 @@
   justify-content: center;
   align-items: center;
   background-color: #f2f2f2;
-  height: 40px;
+  background-color: transparent;
+  height: 33px;
   border-radius: 10px;
   width: fit-content;
   margin: 7px;
+  border: 2px solid black;
 }
 
 .mood-button:hover {
@@ -15,7 +17,7 @@
 }
 
 .mood-button:hover .mood-text[disabled] {
-    color: #a3a3a3;
+  color: #a3a3a3;
 }
 
 .mood-text {
