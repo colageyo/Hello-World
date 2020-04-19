@@ -193,7 +193,7 @@ def retrieve_event(response):
         summary=response["summary"],
         description_html=response["description"]["html"],
         tags=get_tags(response["category_id"], format_id),
-        image=response["logo"]["original"]["url"] if "logo" in response else ""
+        image=response["logo"]["original"]["url"] if response.get("logo") is not None else ""
     )
 
 def get_events():

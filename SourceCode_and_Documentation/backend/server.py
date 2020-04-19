@@ -23,6 +23,15 @@ def send_error(message):
         '_error': message
     })
 
+@APP.route('/conditions', methods=['GET'])
+def get_current_conditions():
+    conditions = src.weather.get_weather_by_city('sydney').get_json()
+    try:
+        return send_success({
+            "conditions": conditions
+        })
+    except Exception as e:
+        return send_error(e.args)
 
 @APP.route('/events/recommended', methods=['POST'])
 def get_recommended_events():
@@ -38,7 +47,6 @@ def get_recommended_events():
     except KeyError:
         logging.error("Failed to retrieve tags from malformed request body.")
         flask.abort(http.HTTPStatus.BAD_REQUEST)
-
     collected_events = src.events_cache.load_events()
     filtered_events = src.events_filter.filter_events(collected_events, tags)
 

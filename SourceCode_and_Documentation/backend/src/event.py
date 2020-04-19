@@ -152,7 +152,7 @@ class Event:
         return self.is_of_type('indoors')
 
     def is_described_by(self, tags):
-        return tags.issubset(self.tags) or tags.issubset(self.description_html)
+        return tags.issubset(self.tags)
 
     def get_json(self):
         return {
