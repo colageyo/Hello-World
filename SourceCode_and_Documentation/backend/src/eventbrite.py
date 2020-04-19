@@ -30,7 +30,7 @@ EVENTBRITE_URL = "https://www.eventbrite.co.uk/d"
 EVENTS_PATH = "events/"
 LINK_CLASS_NAME = "eds-media-card-content__action-link"
 NAV_LINK_ATTRS = { "data-spec": "paginator__last-page-link" }
-PAGE_LIMIT = 10
+PAGE_LIMIT = 5
 PAGE_PATH = "?page="
 SEARCH_PATH = "/australia--sydney/events--this-week/"
 
@@ -79,8 +79,9 @@ CAMP = "18"
 APPEARANCE = "19"
 OTHER = "20"
 
+# All tags: "artsy", "sporty", "romantic", "family-friendly", "geeky", "history", "hungry"
 CATEGORIES_TAGS = {
-    ALL_TAGS: ["artsy", "sporty", "romantic", "family-friendly", "geeky", "history", "hungry"],
+    ALL_TAGS: [],
     BOAT_AIR: [],
     BUSSINESS_PROFESSIONAL: ["geeky"],
     CHARITY: [],
@@ -209,17 +210,18 @@ def get_events():
     # call Eventbrite API using batch request
     response = loads(requests.post(EVENTBRITE_API + BATCH_PATH, data=data, headers=headers).text)
     event_responses = list(map(lambda r : loads(r["body"])["events"][0], response))
-    filtered_responses = list(filter(is_not_cancelled_or_postponed, event_responses))
+    filtered_responses = list(filter(is_appropriate, event_responses))
 
     # normalize as Event objects
     return list(map(retrieve_event, filtered_responses))
 
-def is_not_cancelled_or_postponed(event_response):
-    '''Given an Event from an Eventbrite API response, determines if it has been cancelled'''
+def is_appropriate(event_response):
+    '''Given an Event from an Eventbrite API response, determines if appropriate for display'''
+    is_dating_event = re.search(r'dating', event_response["name"]["text"].lower()) is not None
     in_summary = re.search(r'(cancelled|canceled|postponed|suspended)', event_response["summary"].lower()) is not None
     in_description = re.search(r'(cancelled|canceled|postponed|suspended)', event_response["description"]["text"].lower()) is not None
     in_name = re.search(r'(cancelled|canceled|postponed)', event_response["name"]["text"].lower()) is not None
-    return not any([in_summary, in_description, in_name])
+    return not any([is_dating_event, in_summary, in_description, in_name])
 
 def is_online(event_response):
     '''Given an Event from an Eventbrite API response, determines if it is online'''

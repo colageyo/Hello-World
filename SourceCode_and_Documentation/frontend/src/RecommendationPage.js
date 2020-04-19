@@ -5,8 +5,8 @@ import EventList from './EventList';
 import Map from './Map';
 import './RecommendationPage.css';
 
-const RecommendationPage = () => {
-
+const RecommendationPage = (props) => {
+  const { tags = [] } = props;
   const [
     events,
     setEvents
@@ -16,7 +16,7 @@ const RecommendationPage = () => {
     Axios.post(
       'http://localhost:5000/events/recommended',
       {
-        tags: []
+        tags,
       },
       {
         headers: {

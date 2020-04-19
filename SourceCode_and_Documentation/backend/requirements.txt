@@ -2,3 +2,4 @@ flask
 python-dotenv
 beautifulsoup4
 pytz
+flask-cors

@@ -154,6 +154,9 @@ class Event:
     def is_described_by(self, tags):
         return tags.issubset(self.tags)
 
+    def is_ended(self, time):
+        return self._end_time <= time.timestamp() if self._end_time > 0 else False
+
     def get_json(self):
         return {
             "event_id": self._event_id,
@@ -184,3 +187,23 @@ class Event:
                 json[key] = list(value)
 
         return json
+
+def from_json(event):
+    return Event(
+        event_id=event["event_id"],
+        url=event["url"],
+        start_time=event["start_time"],
+        end_time=event["end_time"],
+        latitude=float(event["location"]["latitude"]) if event["location"]["latitude"] != "" else "",
+        longitude=float(event["location"]["longitude"]) if event["location"]["longitude"] != "" else "",
+        name=event["name"],
+        organiser=event["organiser"],
+        price=float(event["price"]),
+        is_online=event["is_online"],
+        summary=event["summary"],
+        description_html=event["description_html"],
+        tags=event["tags"],
+        price_tier=event["price_tier"],
+        rating=float(event["rating"]),
+        image=event["image"]
+    )

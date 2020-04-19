@@ -21,22 +21,22 @@ def filter_by_tags(events, tags):
 
 
 def suitable(event, location):
-    if not location.is_close_to(event.longitude, event.latitude):
+    if event.is_ended(location.time) or not location.is_close_to(event.longitude, event.latitude):
         return False
 
-    if event.start_time != '' and datetime.datetime.now().timestamp() + location.time_taken_to_reach(event.longitude,
-                                                                                                     event.latitude) > int(
-            event.start_time):
-        return False
+    # if event.start_time != '' and datetime.datetime.now().timestamp() + location.time_taken_to_reach(event.longitude,
+    #                                                                                                  event.latitude) > int(
+    #         event.start_time):
+    #     return False
 
-    if event.is_only_outdoors() and (
-            location.is_too_humid() or
-            location.is_too_hot() or
-            location.is_too_early() or
-            location.is_too_late() or
-            location.is_too_hazy()
-    ):
-        return False
+    # if event.is_only_outdoors() and (
+    #         location.is_too_humid() or
+    #         location.is_too_hot() or
+    #         location.is_too_early() or
+    #         location.is_too_late() or
+    #         location.is_too_hazy()
+    # ):
+    #     return False
 
     return True
 
@@ -50,4 +50,4 @@ def filter_by_location(events):
         if suitable(event, location):
             filtered_events.append(event)
 
-    return events
+    return filtered_events
