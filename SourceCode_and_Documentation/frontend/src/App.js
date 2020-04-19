@@ -8,6 +8,7 @@ import rain_drop from './assets/rain_drop.png';
 import HelloWorldToolBar from './HelloWorldToolBar';
 import HomePage from './HomePage';
 import RecommendationPage from './RecommendationPage';
+import ContactUsPage from './ContactUs';
 
 const styles = {
   sunset: {
@@ -43,6 +44,7 @@ class App extends Component {
           <Route exact path='/' component={HomePage}/>
           {toggleDynamicBackgroundOn && style == 'day' && <img className="sun" src={sun_img} />}
           <Route path='/recommend' component={RecommendationPage}/>
+          <Route path='/contact' component={ContactUsPage}/>
         </div>
       </Router>
     );
