@@ -57,14 +57,6 @@ a {
   src: local('Montserrat'), url(./fonts/Montserrat/Montserrat-Regular.ttf) format('truetype');
 }
 
-.sun {
-  position: fixed;
-  top: 30%;
-  left: 50%;
-  width: 200px;
-  opacity: 70%;
-}
-
 @font-face {
   font-family: 'Montserrat';
   font-weight: 900;
