@@ -17,9 +17,9 @@ const Map = (
     setViewport
   ] = React.useState({
     width: '100%',
-    height: '100vh',
-    latitude: 0,
-    longitude: 0,
+    height: '100%',
+    latitude: -33.9173,
+    longitude: 151.2313,
     zoom: 10
   });
 
@@ -27,8 +27,8 @@ const Map = (
     userPosition,
     setUserPosition
   ] = React.useState({
-    latitude: -33.865143,
-    longitude: 151.209900
+    latitude: -33.9173,
+    longitude: 151.2313
   });
 
   React.useEffect(

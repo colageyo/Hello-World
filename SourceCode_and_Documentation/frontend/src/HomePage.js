@@ -8,9 +8,10 @@ import {MoodButton} from './MoodButton';
 class HomePage extends Component {
   
   render() {
+    const { isCovid } = this.props;
     return (
       <div className="home-page small-content">
-        <Banner />
+        {isCovid && <Banner />}
         <div className="home-container">
           <div className="home-text">
             <div className="text large-text">Hello Sydney ! </div>
@@ -22,7 +23,7 @@ class HomePage extends Component {
             <MoodButton mood={"artsy"}/>
             <MoodButton mood={"delicious"}/>
             <MoodButton mood={"indoors"}/>
-            <MoodButton mood={"outdoors"}/>
+            <MoodButton isCovid={isCovid} mood={"outdoors"}/>
             <MoodButton mood={"historic"}/>
             <MoodButton mood={"geeky"}/>
             <MoodButton mood={"family-friendly"}/>

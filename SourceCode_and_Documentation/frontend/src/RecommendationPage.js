@@ -6,7 +6,7 @@ import Map from './Map';
 import './RecommendationPage.css';
 
 const RecommendationPage = (props) => {
-  const { tags = [] } = props;
+  const { tags = [], isCovid } = props;
   const [
     events,
     setEvents
@@ -25,7 +25,6 @@ const RecommendationPage = (props) => {
       'http://localhost:5000/conditions'
     ).then(res => {
       const { conditions: { weather, temperature }} = res.data;
-      console.log(res.data);
       const description = weather.split('-')[1].trim();
       setCondition(description);
       setTemperature(temperature);
@@ -54,11 +53,15 @@ const RecommendationPage = (props) => {
     >
       {condition !== undefined && temperature !== undefined &&
         <div className='weather-forecast text'>
-          Today, you can expect <b>{condition}</b>, with a temperature of <b>{temperature} degrees celcius</b>. Remember to stay safe, stay inside ❤
+          Today, you can expect <b>{condition}</b>, with a temperature of <b>{temperature} degrees celcius</b>.
+          {
+            isCovid && ' Remember to stay safe, stay inside ❤'
+          }
         </div>
       }
       <div className='recommendation-panel'>
         <EventList
+          isCovid={isCovid}
           events={events}
           setSelectedEvent={setSelectedEvent}
         />
