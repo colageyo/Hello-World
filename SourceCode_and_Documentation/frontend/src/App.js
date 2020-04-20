@@ -14,7 +14,7 @@ import RecommendationPage from './RecommendationPage';
 const styles = {
   sunset: {
     background: "linear-gradient(to bottom, #ff927f, #ff927f, #ffffff)",
-    color: "#ffffff"
+    color: "#000000"
   },
   day: {
     background: "linear-gradient(to bottom, #dcf1f9, #d6dde4, #ffffff)",
@@ -37,7 +37,7 @@ class App extends Component {
   render() {
     // if true, display gradient background
     const toggleDynamicBackgroundOn = true;
-    const style = "evening";
+    const style = "day";
     const isCovid = true;
 
     return (

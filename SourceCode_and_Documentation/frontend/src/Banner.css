@@ -1,5 +1,6 @@
 .banner-main-container{
-    background-color: #e6e6e6;
+    background-color: white;
+    opacity: 0.8;
     display: block;
     padding: 9px 0;
     position: relative;
@@ -8,7 +9,6 @@
     margin-top: 0;
     z-index: 1;
     width: 100%;
-    color: #000000;
 }
 
 .row {
@@ -23,4 +23,7 @@
     padding-right: 13px;
     cursor: pointer;
     justify-content: center;
+}
+.text{
+    color: black;
 }
