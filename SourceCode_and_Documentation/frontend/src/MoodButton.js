@@ -28,8 +28,8 @@ export const MoodButton = (props) => {
     setY(undefined);
   }
 
-  const { mood, onClick } = props;
-  const isDisabled = mood === "outdoors";
+  const { mood, onClick, isCovid = false } = props;
+  const isDisabled = mood === "outdoors" && isCovid;
 
   return (
     <div className="mood-button" onClick={onClick} onMouseMove={onMouseMove} onMouseLeave={onMouseLeave} >

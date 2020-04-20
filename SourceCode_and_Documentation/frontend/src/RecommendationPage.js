@@ -6,11 +6,30 @@ import Map from './Map';
 import './RecommendationPage.css';
 
 const RecommendationPage = (props) => {
-  const { tags = [] } = props;
+  const { tags = [], isCovid } = props;
   const [
     events,
     setEvents
   ] = React.useState([]);
+
+  const [
+    selectedEvent, 
+    setSelectedEvent
+  ] = React.useState();
+
+  const [temperature, setTemperature] = React.useState();
+  const [condition, setCondition] = React.useState();
+
+  React.useEffect(() => {
+    Axios.get(
+      'http://localhost:5000/conditions'
+    ).then(res => {
+      const { conditions: { weather, temperature }} = res.data;
+      const description = weather.split('-')[1].trim();
+      setCondition(description);
+      setTemperature(temperature);
+    });
+  }, []);
 
   React.useEffect(() => {
     Axios.post(
@@ -32,11 +51,23 @@ const RecommendationPage = (props) => {
     <div
       className="recommendation-page"
     >
+      {condition !== undefined && temperature !== undefined &&
+        <div className='weather-forecast text'>
+          Today, you can expect <b>{condition}</b>, with a temperature of <b>{temperature} degrees celcius</b>.
+          {
+            isCovid && ' Remember to stay safe, stay inside ❤'
+          }
+        </div>
+      }
       <div className='recommendation-panel'>
         <EventList
+          isCovid={isCovid}
           events={events}
+          setSelectedEvent={setSelectedEvent}
         />
-        <Map/>
+        <Map
+          selectedEvent={selectedEvent}
+        />
       </div>
     </div>
   );

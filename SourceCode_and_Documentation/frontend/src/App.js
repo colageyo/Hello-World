@@ -35,15 +35,16 @@ class App extends Component {
   render() {
     // if true, display gradient background
     const toggleDynamicBackgroundOn = true;
-    const style = "evening";
-
+    const style = "rainy";
+    const isCovid = true;
+    
     return (
       <Router>
         <div className="App" style={toggleDynamicBackgroundOn ? styles[style] : {}}>
-          <HelloWorldToolBar />
-          <Route exact path='/' component={HomePage} />
+          <HelloWorldToolBar/>
+          <Route exact path='/' component={() => <HomePage isCovid={isCovid} />}/>
           {toggleDynamicBackgroundOn && style == 'day' && <img className="sun" src={sun_img} />}
-          <Route path='/recommend' component={RecommendationPage} />
+          <Route path='/recommend' component={() => <RecommendationPage isCovid={isCovid} />}/>
         </div>
       </Router>
     );

@@ -1,9 +1,9 @@
 .logo {
-  height: 55px;
+  height: 40px;
 }
 
 .nav-bar {
-    padding-top: 10px;
+    padding-top: 15px;
     padding-bottom: 10px;
     display: flex;
     justify-content: space-between;

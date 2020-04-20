@@ -7,29 +7,37 @@ export const Event = (props) => {
       name,
       url,
       image,
-      summary
+      summary,
+      is_online,
     }
   } = props;
 
   return (
-    <a href={url}>
-      <div
-        className='event-item'
-      >
-        {image !== "" && <img
-          src={image}
-          className='event-picture'
-          alt='Sydney'
-        />}
-        <div className='event-text'>
-          <p>
-            {name}
-          </p>
-          <p>
-            {summary}
-          </p>
-        </div>
+    <div
+      className='event-item'
+      onClick={() => {
+        props.onClick();
+      }}
+    >
+      {is_online && <div className="online-banner">Online Event</div>}
+      {image !== "" && <img
+        src={image}
+        className='event-picture'
+        alt='Sydney'
+      />}
+      <div className='event-text'>
+        <p>
+          {name}
+        </p>
+        <p className='event-summary'>
+          {summary}
+        </p>
+        <a href={url} target='_blank' className='event-summary learn-more' onClick={e => {
+          e.stopPropagation();
+        }}>
+          Learn more
+        </a>
       </div>
-    </a>
+    </div>
   );
 };

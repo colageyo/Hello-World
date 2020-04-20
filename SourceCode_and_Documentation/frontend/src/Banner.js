@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import ClosingIcon from './assets/closing-icon.png';
+import ClosingIcon from './assets/closing_icon_black.png';
 
 
 class Banner extends Component {
