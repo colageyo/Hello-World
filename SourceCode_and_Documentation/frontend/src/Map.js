@@ -26,7 +26,10 @@ const Map = (
   const [
     userPosition,
     setUserPosition
-  ] = React.useState();
+  ] = React.useState({
+    latitude: -33.865143,
+    longitude: 151.209900
+  });
 
   React.useEffect(
     () => {

@@ -6,6 +6,8 @@
 }
 
 .event-item {
+    overflow: hidden;
+    position: relative;
     background-color: white;
     margin-bottom: 10px;
     height: 180px;
@@ -20,4 +22,17 @@
 
 .learn-more {
     float: right;
+}
+
+.online-banner {
+    font-size: 20px;
+    position: absolute;
+    left: 0;
+    margin-top: 10px;
+    /*transform: translate(-50px, 35px) rotate(-45deg);*/
+    color: white;
+    background-color: rgb(255, 77, 38);
+    padding: 2px 0;
+    width: 200px;
+    text-align: center;
 }

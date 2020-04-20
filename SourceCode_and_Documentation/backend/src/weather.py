@@ -152,7 +152,7 @@ def get_weather_by_city(city):
         print(f"Sunset is within an hour from now")
 
     return src.conditions.Conditions(
-        weather_conditions[0],
+        f'{weather_conditions[0]} - {weather_descriptions[0]}',
         datetime.fromtimestamp(now),
         temp,
         humidity,

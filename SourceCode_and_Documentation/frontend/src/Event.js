@@ -7,7 +7,8 @@ export const Event = (props) => {
       name,
       url,
       image,
-      summary
+      summary,
+      is_online,
     }
   } = props;
 
@@ -18,6 +19,7 @@ export const Event = (props) => {
         props.onClick();
       }}
     >
+      {is_online && <div className="online-banner">Online Event</div>}
       {image !== "" && <img
         src={image}
         className='event-picture'
