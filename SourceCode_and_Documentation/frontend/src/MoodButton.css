@@ -2,14 +2,11 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: transparent;
-  height: 33px;
+  background-color: #f2f2f2;
+  height: 40px;
   border-radius: 10px;
   width: fit-content;
   margin: 7px;
-  border-width: 2px;
-  border-style: solid;
-  border-color: inherit;
 }
 
 .mood-button:hover {
@@ -18,11 +15,11 @@
 }
 
 .mood-button:hover .mood-text[disabled] {
-  color: #a3a3a3;
+    color: #a3a3a3;
 }
 
 .mood-text {
-  color:inherit;
+  color: #000000;
   font-size: 1.25rem;
   letter-spacing: .05rem;
   padding: 0 20px;

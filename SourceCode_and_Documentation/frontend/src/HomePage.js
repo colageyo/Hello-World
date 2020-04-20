@@ -6,7 +6,7 @@ import Background from './assets/background_day.png';
 import {MoodButton} from './MoodButton';
 
 class HomePage extends Component {
-
+  
   render() {
     const { isCovid } = this.props;
     return (
@@ -30,8 +30,8 @@ class HomePage extends Component {
           </div>
         </div>
 
-        <div className="home-background">
-          <img className="home-image" src={Background} />
+        <div className = "home-background">
+          <img className="home-image" src={Background}/>
         </div>
       </div>
     );
