@@ -7,7 +7,9 @@
   border-radius: 10px;
   width: fit-content;
   margin: 7px;
-  border: 2px solid black;
+  border-width: 2px;
+  border-style: solid;
+  border-color: inherit;
 }
 
 .mood-button:hover {
@@ -20,7 +22,7 @@
 }
 
 .mood-text {
-  color: #000000;
+  color:inherit;
   font-size: 1.25rem;
   letter-spacing: .05rem;
   padding: 0 20px;
