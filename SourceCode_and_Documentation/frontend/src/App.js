@@ -3,8 +3,6 @@ import './App.css';
 import { BrowserRouter as Router, Route, withRouter } from 'react-router-dom';
 import Banner from './Banner';
 import './Banner.css'
-import sun_img from './assets/sun_icon.png';
-import rain_drop from './assets/rain_drop.png';
 
 // components
 import HelloWorldToolBar from './HelloWorldToolBar';
@@ -37,7 +35,7 @@ class App extends Component {
   render() {
     // if true, display gradient background
     const toggleDynamicBackgroundOn = true;
-    const style = "day";
+    const style = "rainy";
     const isCovid = true;
 
     return (
@@ -46,7 +44,6 @@ class App extends Component {
           {isCovid && <Banner />}
           <HelloWorldToolBar />
           <Route exact path='/' component={() => <HomePage isCovid={isCovid} />} />
-          {toggleDynamicBackgroundOn && style == 'day' && <img className="sun" src={sun_img} />}
           <Route path='/recommend' component={() => <RecommendationPage isCovid={isCovid} />} />
         </div>
       </Router>
