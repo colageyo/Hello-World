@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Banner from './Banner';
 import './Banner.css'
 import './HomePage.css';
-import Background from './assets/background_image.png';
+import Background from './assets/background_day.png';
 import {MoodButton} from './MoodButton';
 
 class HomePage extends Component {
