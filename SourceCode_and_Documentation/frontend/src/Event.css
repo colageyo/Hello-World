@@ -8,7 +8,16 @@
 .event-item {
     background-color: white;
     margin-bottom: 10px;
-    height: 150px;
+    height: 180px;
     padding: 10px;
     display: flex;
+    cursor: pointer;
+}
+
+.event-summary {
+    font-size: 0.8rem;
+}
+
+.learn-more {
+    float: right;
 }

@@ -122,7 +122,7 @@ def get_weather_by_city(city):
     weather_descriptions = list(map(lambda wc: wc["description"], response["weather"]))
     temp = response["main"]["feels_like"]
     humidity = response["main"]["humidity"]
-    visibility = response["visibility"]
+    # visibility = response["visibility"]
     local_sunrise = response["sys"]["sunrise"]
     local_sunset = response["sys"]["sunset"]
 
@@ -142,7 +142,7 @@ def get_weather_by_city(city):
     print(f"Weather icon: http://openweathermap.org/img/wn/{weather_icons[0]}@2x.png")
     print(f"Feels like: {temp} degrees celcius")
     print(f"Humidity: {humidity}%")
-    print(f"Visibility: {visibility}m")
+    # print(f"Visibility: {visibility}m")
     print(f"Activity tags: {activity_tags[weather_conditions[0].lower()]}")
     print(f"Sunrise: {datetime.fromtimestamp(sunrise)}")
     print(f"Sunset: {datetime.fromtimestamp(sunset)}")
@@ -156,7 +156,7 @@ def get_weather_by_city(city):
         datetime.fromtimestamp(now),
         temp,
         humidity,
-        visibility,
+        # visibility,
         activity_tags[weather_conditions[0].lower()],
         datetime.fromtimestamp(sunrise),
         datetime.fromtimestamp(sunset),

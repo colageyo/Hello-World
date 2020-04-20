@@ -1,4 +1,9 @@
 .map {
-  width: 65%;
+  width: 60%;
   display: inline;
+}
+
+.map-marker {
+  color: red;
+  font-size: 2rem;
 }

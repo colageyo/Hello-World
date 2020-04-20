@@ -1,16 +1,16 @@
 import React from 'react';
-import ReactMapGL, { GeolocateControl } from 'react-map-gl';
+import ReactMapGL, { Marker, WebMercatorViewport, FlyToInterpolator } from 'react-map-gl';
+import { easeCubic } from 'd3-ease';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faMapMarkerAlt, faMapPin } from '@fortawesome/free-solid-svg-icons';
 
 import './Map.css';
 
-const geolocateStyle = {
-  position: 'absolute',
-  top: 0,
-  left: 0,
-  margin: 10
-};
-
-const Map = () => {
+const Map = (
+  {
+    selectedEvent
+  }
+) => {
 
   const [
     viewport,
@@ -23,13 +23,58 @@ const Map = () => {
     zoom: 10
   });
 
+  const [
+    userPosition,
+    setUserPosition
+  ] = React.useState();
+
+  React.useEffect(
+    () => {
+      if (userPosition !== undefined) {
+        setViewport({
+          ...viewport,
+          ...userPosition
+        })
+      }
+    },
+    [userPosition]
+  )
+
+  React.useEffect(
+    () => {
+      if (selectedEvent !== undefined) {
+        const {
+          longitude,
+          latitude,
+          zoom
+        } = new WebMercatorViewport(viewport).fitBounds(
+          [[userPosition.longitude, userPosition.latitude], [selectedEvent.location.longitude, selectedEvent.location.latitude]],
+          {
+            padding: 20,
+            offset: [0, -100]
+          }
+        )
+
+        setViewport({
+          ...viewport,
+          longitude,
+          latitude,
+          zoom,
+          transitionDuration: 2000,
+          transitionInterpolator: new FlyToInterpolator(),
+          transitionEasing: easeCubic
+        })
+      }
+    },
+    [selectedEvent]
+  )
+
   React.useEffect(() => {
     navigator.geolocation.getCurrentPosition(pos => {
-      setViewport({
-        ...viewport,
+      setUserPosition({
         latitude: pos.coords.latitude,
         longitude: pos.coords.longitude
-      });
+      })
     });
   }, [])
 
@@ -42,11 +87,23 @@ const Map = () => {
         {...viewport}
         onViewportChange={viewport => setViewport(viewport)}
       >
-        <GeolocateControl
-          style={geolocateStyle}
-          positionOptions={{ enableHighAccuracy: true }}
-          trackUserLocation={true}
-        />
+        {userPosition && (
+          <Marker
+            latitude={userPosition.latitude}
+            longitude={userPosition.longitude}
+          >
+            <FontAwesomeIcon icon={faMapMarkerAlt} className='map-marker' />
+          </Marker>
+        )
+        }
+        {selectedEvent && (
+          <Marker
+            latitude={selectedEvent.location.latitude}
+            longitude={selectedEvent.location.longitude}
+          >
+            <FontAwesomeIcon icon={faMapPin} className='map-marker' />
+          </Marker>
+        )}
       </ReactMapGL>
     </div>
   );

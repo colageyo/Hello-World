@@ -12,6 +12,11 @@ const RecommendationPage = (props) => {
     setEvents
   ] = React.useState([]);
 
+  const [
+    selectedEvent, 
+    setSelectedEvent
+  ] = React.useState();
+
   React.useEffect(() => {
     Axios.post(
       'http://localhost:5000/events/recommended',
@@ -35,8 +40,11 @@ const RecommendationPage = (props) => {
       <div className='recommendation-panel'>
         <EventList
           events={events}
+          setSelectedEvent={setSelectedEvent}
         />
-        <Map/>
+        <Map
+          selectedEvent={selectedEvent}
+        />
       </div>
     </div>
   );

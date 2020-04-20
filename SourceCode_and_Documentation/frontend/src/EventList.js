@@ -4,7 +4,8 @@ import { Event } from './Event';
 
 const EventList = (
   {
-    events
+    events,
+    setSelectedEvent
   }
 ) => (
   <div
@@ -14,7 +15,7 @@ const EventList = (
       {events.length} events and activities just for you
     </p>
     {events.map((event, i) => (
-      <Event event={event} key={i} onClick={() => console.log('click!')} />
+      <Event event={event} key={i} onClick={() => setSelectedEvent(event)} />
     ))}
   </div>
 );
