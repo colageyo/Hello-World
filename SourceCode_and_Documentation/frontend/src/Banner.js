@@ -1,23 +1,21 @@
 import React, { Component } from 'react';
 import ClosingIcon from './assets/closing_icon_black.png';
 
-
 class Banner extends Component {
     render() {
         return (
-        
-        <div className='banner-main-container' > 
-            <div className='row'>
-                <div className='text'>
-                    Stay safe in these difficult times. Learn More
+            <div className='banner-main-container' >
+                <div className='row'>
+                    <div className='text'>
+                        Stay safe in these difficult times. <u>Learn More</u>
+                    </div>
+                    <img className='closing-icon' src={ClosingIcon} onClick={collapseBanner} />
                 </div>
-                <img className='closing-icon' src={ClosingIcon} onClick={collapseBanner} />
             </div>
-        </div>
-        
+
         );
     }
-}  
+}
 
 
 function collapseBanner() {
