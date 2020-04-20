@@ -42,7 +42,9 @@ const Map = (
 
   React.useEffect(
     () => {
-      if (selectedEvent !== undefined) {
+      if (selectedEvent !== undefined && 
+        selectedEvent.location.latitude !== '' && 
+        selectedEvent.location.longitude !== '') {
         const {
           longitude,
           latitude,
@@ -96,7 +98,9 @@ const Map = (
           </Marker>
         )
         }
-        {selectedEvent && (
+        {selectedEvent && 
+        selectedEvent.location.latitude !== '' &&
+        selectedEvent.location.longitude !== '' && (
           <Marker
             latitude={selectedEvent.location.latitude}
             longitude={selectedEvent.location.longitude}
