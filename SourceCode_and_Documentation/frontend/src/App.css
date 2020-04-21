@@ -6,38 +6,43 @@
 }
 
 /* Ultra slim screens */
-.banner-main-container .row,
-.small-content {
-  padding: 0 50px;
-}
+.banner-main-container 
+  .row ,
+  .small-content{
+    padding: 0 50px;
+  }
 
 @media(min-width: 600px) {
   /* Phone devices */
-  .banner-main-container .row,
-  .small-content {
+  .banner-main-container 
+  .row ,
+  .small-content{
     padding: 0 100px;
   }
 }
 
 @media(min-width: 900px) {
   /* Tablet or small laptop devices */
-  .banner-main-container .row,
-  .small-content {
+  .banner-main-container 
+  .row ,
+  .small-content{
     padding: 0 150px;
   }
 }
 
 @media(min-width: 1300px) {
   /* Laptop web */
-  .banner-main-container .row,
-  .small-content {
+  .banner-main-container 
+  .row ,
+.small-content{
     padding: 0 200px;
   }
 }
 
 @media(min-width: 1600px) {
   /* High res monitors */
-  .banner-main-container .row,
+  .banner-main-container 
+  .row ,
   .small-content {
     padding: 0 300px;
   }

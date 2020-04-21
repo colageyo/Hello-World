@@ -5,12 +5,13 @@ import './App.css';
 import Logo from './assets/logo_day.png';
 
 function HelloWorldToolBar() {
-    return (
-      <div className="nav-bar small-content">
+  return (
+    <div className="nav-bar small-content">
+      <div className="nav-bar-inner-container">
         <Link
           to='/'
         >
-          <img className="logo" src={Logo}/>
+          <img className="logo" src={Logo} />
         </Link>
         <div className="text-container">
           <div className="text tool-bar-text button">
@@ -18,7 +19,14 @@ function HelloWorldToolBar() {
               to='/recommend'
             >
               Activities and Events
-            </Link>
+              </Link>
+          </div>
+          <div className="text tool-bar-text button">
+            <Link
+              to='/contact'
+            >
+              Contact Us
+              </Link>
           </div>
           <div className="text tool-bar-text button">
             <Link
@@ -29,7 +37,8 @@ function HelloWorldToolBar() {
           </div>
         </div>
       </div>
-    );
+    </div>
+  );
 }
 
 export default HelloWorldToolBar;

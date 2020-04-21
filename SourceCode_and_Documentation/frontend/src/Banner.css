@@ -1,19 +1,20 @@
 .banner-main-container{
-    background-color: #e6e6e6;
-    display: block;
-    padding: 7px 0;
-    position: fixed;
+    background-color: white;
+    opacity: 0.8;
+    padding: 9px 0;
     left: 0;
-    margin-top: 10px;
+    margin-top: 0;
     z-index: 1;
     width: 100%;
-    color: #000000;
+    display: flex;
+    justify-content: space-around;
 }
 
 .row {
     display: flex;
     justify-content: space-between;
-    position: relative;
+    padding: 0 0;
+    min-width: 96%; 
 }
 
 .closing-icon {
@@ -21,4 +22,9 @@
     margin: auto 0;
     cursor: pointer;
     justify-content: center;
+}
+
+.covid-text{
+    color: black;
+    font-family: Montserrat, Helvetica, sans-serif;
 }
