@@ -1,36 +1,28 @@
 import React from 'react';
 import './EventList.css';
+import { Event } from './Event';
 
 const EventList = (
   {
-    events
+    isCovid,
+    events,
+    setSelectedEvent
   }
-) => (
-  <div
-    className='event-list text'
-  >
-    <p>
-      {events.length} events and activities just for you
-    </p>
-    {events.map((event, i) => (
-      <div
-        className='event-item'
-        key={i}
-      >
-        <img
-          src='https://miro.medium.com/max/4250/1*-MklWDSjKS5vWEG5ZYXCww.jpeg'
-          className='picture'
-          alt='Sydney'
-        />
-        <p>
-          {event.name}
-        </p>
-        <p>
-          bruh
-        </p>
-      </div>
-    ))}
-  </div>
-);
+) => {
+  const shouldShowEvent = (e) => isCovid ? e.is_online : true;
+  const filteredEvents = events.filter(shouldShowEvent);
+  return (
+    <div
+      className='event-list text'
+    >
+      <p>
+        {filteredEvents.length} events and activities just for you
+      </p>
+      {filteredEvents.map((event, i) => (
+        <Event event={event} key={i} onClick={() => setSelectedEvent(event)} />
+      ))}
+    </div>
+  )
+};
 
 export default EventList;

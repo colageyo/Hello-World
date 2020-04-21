@@ -54,10 +54,11 @@
 }
 
 .home-background {
-    position: absolute;
+    margin-top: 90px;
     bottom: 0;
 }
 
 .home-image{
-    width: 100%;
+    width: 80%;
+    float: right;
 }

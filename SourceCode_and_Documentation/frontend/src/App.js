@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, withRouter } from 'react-router-dom';
 import sun_img from './assets/sun_icon.png';
 import rain_drop from './assets/rain_drop.png';
 
@@ -8,11 +8,12 @@ import rain_drop from './assets/rain_drop.png';
 import HelloWorldToolBar from './HelloWorldToolBar';
 import HomePage from './HomePage';
 import RecommendationPage from './RecommendationPage';
+import ContactUsPage from './ContactUs';
 
 const styles = {
   sunset: {
     background: "linear-gradient(to bottom, #392033, #fd6051, #fec051)",
-    color: "#ffffff"
+    color: "#000000"
   },
   day: {
     background: "linear-gradient(to bottom, #c7dff1, #d6dde4)",
@@ -30,19 +31,22 @@ const styles = {
   }
 }
 
+
 class App extends Component {
   render() {
     // if true, display gradient background
-    const toggleDynamicBackgroundOn = false;
-    const style = "sunset";
-
+    const toggleDynamicBackgroundOn = true;
+    const style = "rainy";
+    const isCovid = true;
+    
     return (
       <Router>
         <div className="App" style={toggleDynamicBackgroundOn ? styles[style] : {}}>
           <HelloWorldToolBar/>
-          <Route exact path='/' component={HomePage}/>
+          <Route exact path='/' component={() => <HomePage isCovid={isCovid} />}/>
           {toggleDynamicBackgroundOn && style === 'day' && <img className="sun" src={sun_img} />}
-          <Route path='/recommend' component={RecommendationPage}/>
+          <Route path='/contact' component={ContactUsPage}/>
+          <Route path='/recommend' component={() => <RecommendationPage isCovid={isCovid} />}/>
         </div>
       </Router>
     );

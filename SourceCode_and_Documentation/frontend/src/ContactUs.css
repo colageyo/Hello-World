@@ -23,6 +23,7 @@
 }
 
 input {
+    background: transparent;
     border: none;
     outline: none;
     padding: 10px;
@@ -44,6 +45,7 @@ input:focus {
 }
 
 .message {
+    background: transparent;
     outline: none;
     min-width: 300px;
     min-height: 200px;
