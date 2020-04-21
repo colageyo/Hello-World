@@ -7,10 +7,7 @@
 
 /* Ultra slim screens */
 .banner-main-container 
-  .row {
-    padding: 0 7.5px;
-  }
-
+  .row ,
   .small-content{
     padding: 0 50px;
   }
@@ -18,10 +15,7 @@
 @media(min-width: 600px) {
   /* Phone devices */
   .banner-main-container 
-  .row {
-    padding: 0 15px;
-  }
-
+  .row ,
   .small-content{
     padding: 0 100px;
   }
@@ -30,10 +24,7 @@
 @media(min-width: 900px) {
   /* Tablet or small laptop devices */
   .banner-main-container 
-  .row {
-    padding: 0 22.5px;
-  }
-
+  .row ,
   .small-content{
     padding: 0 150px;
   }
@@ -44,8 +35,8 @@
   .banner-main-container 
   .row {
     padding: 0 30px;
+    padding-right: 30px;
   }
-
   .small-content{
     padding: 0 200px;
   }
@@ -54,9 +45,7 @@
 @media(min-width: 1600px) {
   /* High res monitors */
   .banner-main-container 
-  .row {
-    padding: 0 37.5px;
-  }
+  .row ,
   .small-content {
     padding: 0 300px;
   }

@@ -3,13 +3,18 @@
 }
 
 .nav-bar {
-    margin-top: 15px;
-    padding-left: 30px;
-    width: 95%;
-    position: relative;
+    padding-top: 15px;
     padding-bottom: 10px;
+    padding-left: 0px;
+    padding-right: 0px;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
+}
+
+.nav-bar-inner-container {
+  display: flex;
+  justify-content: space-between;
+  min-width: 96%;
 }
 
 .text-container {

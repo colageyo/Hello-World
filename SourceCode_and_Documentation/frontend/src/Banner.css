@@ -1,11 +1,8 @@
 .banner-main-container{
     background-color: white;
     opacity: 0.8;
-    display: block;
     padding: 9px 0;
-    position: relative;
     left: 0;
-    top: 0;
     margin-top: 0;
     z-index: 1;
     width: 100%;
@@ -20,7 +17,7 @@
 .closing-icon {
     height: 15px;
     margin: auto 0;
-    padding-right: 13px;
+
     cursor: pointer;
     justify-content: center;
 }
