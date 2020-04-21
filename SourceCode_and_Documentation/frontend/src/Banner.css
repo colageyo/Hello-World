@@ -6,12 +6,15 @@
     margin-top: 0;
     z-index: 1;
     width: 100%;
+    display: flex;
+    justify-content: space-around;
 }
 
 .row {
     display: flex;
     justify-content: space-between;
-    position: relative;
+    padding: 0 0;
+    min-width: 96%; 
 }
 
 .closing-icon {
@@ -20,4 +23,9 @@
 
     cursor: pointer;
     justify-content: center;
+}
+
+.covid-text{
+    color: black;
+    font-family: Montserrat, Helvetica, sans-serif;
 }

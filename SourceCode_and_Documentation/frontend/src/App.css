@@ -33,10 +33,7 @@
 @media(min-width: 1300px) {
   /* Laptop web */
   .banner-main-container 
-  .row {
-    padding: 0 30px;
-    padding-right: 30px;
-  }
+  .row ,
   .small-content{
     padding: 0 200px;
   }

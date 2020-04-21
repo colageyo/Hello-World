@@ -2,10 +2,11 @@ import React, { Component } from 'react';
 import './App.css';
 import { BrowserRouter as Router, Route, withRouter } from 'react-router-dom';
 
-import Banner from './Banner';
-import './Banner.css'
+
 
 // components
+import Banner from './Banner';
+import './Banner.css'
 import HelloWorldToolBar from './HelloWorldToolBar';
 import HomePage from './HomePage';
 import RecommendationPage from './RecommendationPage';
