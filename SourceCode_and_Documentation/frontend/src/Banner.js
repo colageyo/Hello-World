@@ -6,7 +6,7 @@ class Banner extends Component {
         return (
             <div className='banner-main-container' >
                 <div className='row'>
-                    <div className='text'>
+                    <div className='text' style={{ color: 'black' }}>
                         Stay safe in these difficult times. <u>Learn More</u>
                     </div>
                     <img className='closing-icon' src={ClosingIcon} onClick={collapseBanner} />
