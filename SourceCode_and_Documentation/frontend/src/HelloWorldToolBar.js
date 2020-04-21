@@ -28,6 +28,13 @@ function HelloWorldToolBar() {
               Contact Us
               </Link>
           </div>
+          <div className="text tool-bar-text button">
+            <Link
+              to='/contact'
+            >
+              Contact Us
+            </Link>
+          </div>
         </div>
       </div>
     </div>

@@ -10,6 +10,7 @@ import './Banner.css'
 import HelloWorldToolBar from './HelloWorldToolBar';
 import HomePage from './HomePage';
 import RecommendationPage from './RecommendationPage';
+import ContactUsPage from './ContactUs';
 
 const styles = {
   sunset: {
@@ -47,6 +48,7 @@ class App extends Component {
           <HelloWorldToolBar />
           <Route exact path='/' component={() => <HomePage isCovid={isCovid} />} />
           <Route path='/recommend' component={() => <RecommendationPage isCovid={isCovid} />} />
+          <Route path='/contact' component={ContactUsPage}/>
         </div>
       </Router>
     );
