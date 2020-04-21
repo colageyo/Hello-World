@@ -1,13 +1,27 @@
 import React, { Component } from 'react';
 
 import './HomePage.css';
-import Background from './assets/background_day.png';
+import DayBackground from './assets/background_day.png';
+import SunsetBackground from './assets/background_sunset.png';
+import EveningBackground from './assets/background_evening.png';
+import SunriseBackground from './assets/background_sunrise.png';
+import RainyBackground from './assets/background_rainy.png';
 import { MoodButton } from './MoodButton';
 
 class HomePage extends Component {
 
   render() {
+    
     const { isCovid, style } = this.props;
+    const background = SunsetBackground;
+    const styles = {
+      sunset: SunsetBackground,
+      day: DayBackground,
+      rainy: RainyBackground,
+      sunrise: SunriseBackground,
+      evening: EveningBackground
+    }
+
     return (
       <div className="home-page small-content">
         <div className="home-container">
@@ -29,7 +43,7 @@ class HomePage extends Component {
         </div>
 
         <div className="home-background">
-          <img className="home-image" src={Background} />
+          <img className="home-image" src={styles[style]} />
         </div>
       </div>
     );

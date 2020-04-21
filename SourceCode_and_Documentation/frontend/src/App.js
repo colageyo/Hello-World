@@ -45,7 +45,7 @@ class App extends Component {
       <Router>
         <div className="App" style={toggleDynamicBackgroundOn ? styles[style] : {}}>
           {isCovid && <Banner />}
-          <HelloWorldToolBar />
+          <HelloWorldToolBar style={style}/>
           <Route exact path='/' component={() => <HomePage isCovid={isCovid} style={style} />} />
           <Route path='/recommend' component={() => <RecommendationPage isCovid={isCovid} />} />
           <Route path='/contact' component={ContactUsPage}/>
