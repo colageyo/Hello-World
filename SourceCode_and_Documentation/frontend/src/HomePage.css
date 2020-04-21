@@ -62,3 +62,12 @@
     width: 80%;
     float: right;
 }
+
+.submit-text {
+    margin-left: 19px;
+    margin-top: 30px;
+    font-weight: 530;
+    cursor: pointer;
+    text-align: left;
+    font-size: 1.25rem; 
+}
