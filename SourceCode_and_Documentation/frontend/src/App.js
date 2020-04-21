@@ -44,7 +44,7 @@ class App extends Component {
         <div className="App" style={toggleDynamicBackgroundOn ? styles[style] : {}}>
           <HelloWorldToolBar/>
           <Route exact path='/' component={() => <HomePage isCovid={isCovid} />}/>
-          {toggleDynamicBackgroundOn && style == 'day' && <img className="sun" src={sun_img} />}
+          {toggleDynamicBackgroundOn && style === 'day' && <img className="sun" src={sun_img} />}
           <Route path='/contact' component={ContactUsPage}/>
           <Route path='/recommend' component={() => <RecommendationPage isCovid={isCovid} />}/>
         </div>

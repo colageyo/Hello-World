@@ -1,4 +1,6 @@
-import React from "react";
+import React, { Component } from "react";
+import { CovidDialog } from "./CovidDialog";
+
 import "./CategoryButton.css";
 
 import Artsy from "./icons/artsy.png";
@@ -23,14 +25,60 @@ const icons = {
   sporty: Sporty
 };
 
-export const CategoryButton = props => {
-  const { category, onClick } = props;
+class CategoryButton extends Component {
+  constructor(props) {
+    super(props);
+    this.handleClick = this.handleClick.bind(this);
+    this.state = {
+      x: 0,
+      y: 0,
+      isDisabled: this.props.category == "outdoors"
+    };
+  }
 
-  return (
-    <div className="category-button" onClick={onClick}>
-      <div className="category-text text">
-        {category} <img className="category-image" src={icons[category]}></img>
+  handleClick = () => {
+    this.props.onClick(this.props.category);
+  };
+
+  onMouseMove = e => {
+    this.setState({
+      x: e.clientX,
+      y: e.clientY
+    });
+  };
+
+  onMouseLeave = () => {
+    this.setState(() => ({
+      x: 0,
+      y: 0
+    }));
+  };
+
+  render() {
+    const covidLog =
+      this.state.isDisabled && this.state.x != 0 && this.state.y != 0 ? (
+        <CovidDialog top={this.state.y} left={this.state.x} />
+      ) : null;
+    return (
+      <div
+        className={
+          this.props.value ? "category-button click-effect" : "category-button"
+        }
+        onClick={this.handleClick}
+        onMouseMove={this.onMouseMove}
+        onMouseLeave={this.onMouseLeave}
+      >
+        {covidLog}
+        <div className="category-text text">
+          {this.props.category}{" "}
+          <img
+            className="category-image"
+            src={icons[this.props.category]}
+          ></img>
+        </div>
       </div>
-    </div>
-  );
-};
+    );
+  }
+}
+
+export default CategoryButton;
