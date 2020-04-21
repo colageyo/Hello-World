@@ -20,7 +20,13 @@ function HelloWorldToolBar() {
               Activities and Events
             </Link>
           </div>
-          <div className="text tool-bar-text button">Contact Us</div>
+          <div className="text tool-bar-text button">
+            <Link
+              to='/contact'
+            >
+              Contact Us
+            </Link>
+          </div>
         </div>
       </div>
     );
