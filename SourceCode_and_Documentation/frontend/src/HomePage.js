@@ -3,7 +3,7 @@ import Banner from './Banner';
 import './Banner.css'
 import './HomePage.css';
 import Background from './assets/background_day.png';
-import {MoodButton} from './MoodButton';
+import MoodButtonList from './MoodButtonList';
 
 class HomePage extends Component {
 
@@ -17,17 +17,7 @@ class HomePage extends Component {
             <div className="text large-text">Hello Sydney ! </div>
             <div className="text small-text">I'm in the mood for something... </div>
           </div>
-          <div className="button-container">
-            <MoodButton mood={"sporty"}/>
-            <MoodButton mood={"romantic"}/>
-            <MoodButton mood={"artsy"}/>
-            <MoodButton mood={"delicious"}/>
-            <MoodButton mood={"indoors"}/>
-            <MoodButton isCovid={isCovid} mood={"outdoors"}/>
-            <MoodButton mood={"historic"}/>
-            <MoodButton mood={"geeky"}/>
-            <MoodButton mood={"family-friendly"}/>
-          </div>
+          <MoodButtonList />
           <div className="text home-text submit-text"><u>Let's go</u></div>
         </div>
 

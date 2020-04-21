@@ -23,16 +23,20 @@ export const MoodButton = (props) => {
     setY(e.clientY + 5);
   }  
 
+  const handleOnclick = () => {
+    onClick(mood);
+  }
+
   const onMouseLeave = () => {
     setX(undefined);
     setY(undefined);
   }
 
-  const { mood, onClick, isCovid = false } = props;
+  const { mood, onClick, isCovid = true, value } = props;
   const isDisabled = mood === "outdoors" && isCovid;
 
   return (
-    <div className="mood-button" onClick={onClick} onMouseMove={onMouseMove} onMouseLeave={onMouseLeave} >
+    <div className="mood-button" onClick={handleOnclick} onMouseMove={onMouseMove} onMouseLeave={onMouseLeave} >
       {isDisabled && x && y && <CovidDialog top={y} left={x} />}
       <div className="mood-text text" disabled={isDisabled}>
         {mood} {icons[mood] || ""}

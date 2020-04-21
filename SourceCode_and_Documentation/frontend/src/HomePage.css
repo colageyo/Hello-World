@@ -37,12 +37,6 @@
     min-width: 80%; 
 }
 
-.button-container{
-    display: flex;
-    flex-wrap: wrap;
-    margin-top: 2%;
-}
-
 .large-text{
     text-align: left;
     font-size: 52.3px;
