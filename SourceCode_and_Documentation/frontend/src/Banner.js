@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
 import ClosingIcon from './assets/closing_icon_black.png';
-import { Link } from 'react-router-dom';
-
-
 
 class Banner extends Component {
     render() {
