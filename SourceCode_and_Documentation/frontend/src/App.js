@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import { BrowserRouter as Router, Route, withRouter } from 'react-router-dom';
+
 import Banner from './Banner';
 import './Banner.css'
 
@@ -35,7 +36,7 @@ class App extends Component {
   render() {
     // if true, display gradient background
     const toggleDynamicBackgroundOn = true;
-    const style = "evening";
+    const style = "day";
     const isCovid = true;
 
     return (

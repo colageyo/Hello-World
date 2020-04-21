@@ -7,7 +7,7 @@ class Banner extends Component {
             <div className='banner-main-container' >
                 <div className='row'>
                     <div className='text' style={{ color: 'black' }}>
-                        Stay safe in these difficult times. <a onClick={pageRedirect} ><u>Learn More</u></a>
+                        Stay safe in these difficult times. <a href="https://www.health.gov.au/news/health-alerts/novel-coronavirus-2019-ncov-health-alert" target="_blank" ><u>Learn More</u></a>
                     </div>
                     <img className='closing-icon' src={ClosingIcon} onClick={collapseBanner} />
                 </div>
@@ -15,10 +15,6 @@ class Banner extends Component {
 
         );
     }
-}
-
-function pageRedirect() {
-    window.location.href = "https://www.health.gov.au/news/health-alerts/novel-coronavirus-2019-ncov-health-alert";
 }
 
 function collapseBanner() {
