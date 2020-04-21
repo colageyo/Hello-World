@@ -61,7 +61,6 @@ const RecommendationPage = (props) => {
         </div>
       }
       <CategoryBar />
-    
       <div className='recommendation-panel'>
         <EventList
           isCovid={isCovid}
