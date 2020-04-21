@@ -28,6 +28,7 @@ class HomePage extends Component {
             <MoodButton mood={"geeky"}/>
             <MoodButton mood={"family-friendly"}/>
           </div>
+          <div className="text home-text submit-text"><u>Let's go</u></div>
         </div>
 
         <div className="home-background">

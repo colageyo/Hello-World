@@ -53,6 +53,15 @@
     font-size: 41.5px;
 }
 
+.submit-text {
+    margin-left: 19px;
+    margin-top: 30px;
+    font-weight: 530;
+    cursor: pointer;
+    text-align: left;
+    font-size: 1.25rem; 
+}
+
 .home-background {
     margin-top: 90px;
     bottom: 0;
