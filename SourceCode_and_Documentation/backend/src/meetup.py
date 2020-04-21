@@ -146,7 +146,8 @@ def get_meetups():
         if category_id not in REQUEST_SIG[city]: continue
         params = get_params(city, category_id)
         events = loads(requests.get(MEETUP_API, params=params).text)
-        all_events.extend(list(map(lambda e: normalise_response(e, category_id), events["results"])))
+        if "results" in events:
+            all_events.extend(list(map(lambda e: normalise_response(e, category_id), events["results"])))
     return all_events
 
 if __name__ == '__main__':

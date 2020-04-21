@@ -68,7 +68,7 @@ class CategoryButton extends Component {
         onMouseMove={this.onMouseMove}
         onMouseLeave={this.onMouseLeave}
       >
-        {covidLog}
+        {/*{covidLog}*/}
         <div className="category-text text">
           {this.props.category}{" "}
           <img

@@ -28,8 +28,8 @@
     font-size: 20px;
     position: absolute;
     left: 0;
-    margin-top: 10px;
-    /*transform: translate(-50px, 35px) rotate(-45deg);*/
+    bottom: 0;
+    margin-bottom: 20px;
     color: white;
     background-color: rgb(255, 77, 38);
     padding: 2px 0;

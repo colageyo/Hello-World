@@ -47,11 +47,20 @@ const Map = (
     () => {
       if (selectedEvent !== undefined) {
         const {
+          location: {
+            longitude: eventLongitude,
+            latitude: eventLatitude,
+          }
+        } = selectedEvent;
+        if (eventLongitude === "" || eventLatitude === "") {
+          return;
+        }
+        const {
           longitude,
           latitude,
           zoom
         } = new WebMercatorViewport(viewport).fitBounds(
-          [[userPosition.longitude, userPosition.latitude], [selectedEvent.location.longitude, selectedEvent.location.latitude]],
+          [[userPosition.longitude, userPosition.latitude], [eventLongitude, eventLatitude]],
           {
             padding: 20,
             offset: [0, -100]
@@ -99,14 +108,18 @@ const Map = (
           </Marker>
         )
         }
-        {selectedEvent && (
-          <Marker
-            latitude={selectedEvent.location.latitude}
-            longitude={selectedEvent.location.longitude}
-          >
-            <FontAwesomeIcon icon={faMapPin} className='map-marker' />
-          </Marker>
-        )}
+        {selectedEvent
+          && selectedEvent.location.latitude !== ""
+          && selectedEvent.location.longitude !== ""
+          && (
+            <Marker
+              latitude={selectedEvent.location.latitude}
+              longitude={selectedEvent.location.longitude}
+            >
+              <FontAwesomeIcon icon={faMapPin} className='map-marker' />
+            </Marker>
+          )
+        }
       </ReactMapGL>
     </div>
   );

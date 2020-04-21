@@ -4,12 +4,20 @@ import { Event } from './Event';
 
 const EventList = (
   {
+    isLocal,
     isCovid,
     events,
     setSelectedEvent
   }
 ) => {
-  const shouldShowEvent = (e) => isCovid ? e.is_online : true;
+  const shouldShowEvent = (e) => {
+    if (isLocal) {
+      return e.event_id.includes('FOURSQUARE') && e.tags.includes("hungry");
+    } else if (isCovid) {
+      return e.is_online;
+    }
+    return true;
+  };
   const filteredEvents = events.filter(shouldShowEvent);
   return (
     <div

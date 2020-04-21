@@ -20,16 +20,34 @@ class CategoryBar extends Component {
     super(props);
     this.state = new Map(categories.map(cat => [cat, false]));
     this.handleClick = this.handleClick.bind(this);
+    this.shouldDisplay = this.shouldDisplay.bind(this);
+    this.handleLocal = this.handleLocal.bind(this);
   }
 
+  handleLocal() {
+    categories.forEach(category => {
+      this.setState(state => ({
+        [category]: false
+      }));
+    });
+    this.props.handleLocal();
+  };
+
   handleClick = category => {
+    this.props.turnOffLocal();
     this.setState(state => ({
       [category]: !state[category]
     }));
   };
 
+  shouldDisplay(c) {
+    const { isCovid } = this.props;
+    return isCovid && c === 'outdoors' ? false : true;
+  }
+
   render() {
-    const categoryButtons = categories.map(category => (
+    const { isCovid = false, isLocal } = this.props;
+    const categoryButtons = categories.filter(this.shouldDisplay).map(category => (
       <CategoryButton
         key={category}
         category={category}
@@ -37,7 +55,17 @@ class CategoryBar extends Component {
         value={this.state[category]}
       />
     ));
-    return <div className="category-bar-scroll-filter">{categoryButtons}</div>;
+    return <div className="category-bar-scroll-filter">
+      {
+        isCovid ? <CategoryButton
+          key='local'
+          category='support local 💖'
+          onClick={this.handleLocal}
+          value={isLocal}
+        /> : null
+      }
+      {categoryButtons}
+    </div>;
   }
 }
 

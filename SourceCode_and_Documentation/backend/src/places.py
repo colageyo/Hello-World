@@ -90,8 +90,11 @@ def get_event_details(id):
             
     premium_response = requests.get(url=call_url, params=premium_client_info)
     premium_data = json.loads(premium_response.text)
-            
-    return premium_data['response']['venue']
+
+    if "venue" in premium_data['response']:
+        return premium_data['response']['venue']
+    print(premium_data["response"])
+    return None
 
 def time_to_unix_time(time_str):
     if time_str == 'Midnight':
@@ -116,10 +119,17 @@ def parseVenueToEvent(venue, category):
     price = 0
     # The price_tier values are in the range (1-4) where '1' is for the pocket friendly places and '4' is for the most expensive places. 
     price_tier = 0
-    is_online = True
+    is_online = False
     rating = 0
     image = ""
+    id = f"FOURSQUARE-{venue['id']}"
     
+    premium_details = get_event_details(venue["id"])
+    if premium_details is not None:
+        venue = premium_details
+
+    print(venue)
+
     if 'hours' in venue:
         time = venue['hours']['timeframes']
         line = str(time[0]['open'][0]['renderedTime'])
@@ -141,7 +151,7 @@ def parseVenueToEvent(venue, category):
     if 'rating' in venue:
         rating = venue['rating']
     
-    event_obj = Event(venue['id'], url,start_time, end_time, float(venue['location']['lat']), float(venue['location']
+    event_obj = Event(id, url,start_time, end_time, float(venue['location']['lat']), float(venue['location']
         ['lng']), venue['name'], "", price, is_online, description, "", CATEGORIES_TAGS.get(CATEGORIES.get(category)), price_tier, rating, image)
     
     return event_obj

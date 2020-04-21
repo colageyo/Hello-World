@@ -17,7 +17,7 @@
   .banner-main-container 
   .row ,
   .small-content{
-    padding: 0 100px;
+    padding: 15px 20px 10px 20px;
   }
 }
 
@@ -26,7 +26,7 @@
   .banner-main-container 
   .row ,
   .small-content{
-    padding: 0 150px;
+    padding: 15px 20px 10px 20px;
   }
 }
 
@@ -35,7 +35,7 @@
   .banner-main-container 
   .row ,
 .small-content{
-    padding: 0 200px;
+    padding: 15px 20px 10px 20px;
   }
 }
 

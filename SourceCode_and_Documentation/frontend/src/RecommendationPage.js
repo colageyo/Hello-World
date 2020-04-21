@@ -20,6 +20,7 @@ const RecommendationPage = (props) => {
 
   const [temperature, setTemperature] = React.useState();
   const [condition, setCondition] = React.useState();
+  const [isLocal, setIsLocal] = React.useState(false);
 
   React.useEffect(() => {
     Axios.get(
@@ -48,21 +49,37 @@ const RecommendationPage = (props) => {
     });
   }, []);
 
+  const handleLocal = () => {
+    setIsLocal(!isLocal);
+  };
+
+  const turnOffLocal = () => {
+    setIsLocal(false);
+  };
+
   return (
     <div
       className="recommendation-page"
     >
+      <div style={{ flexGrow: 1 }}>
+        <CategoryBar
+          isLocal={isLocal}
+          isCovid={isCovid}
+          handleLocal={handleLocal}
+          turnOffLocal={turnOffLocal}
+        />
+      </div>
       {condition !== undefined && temperature !== undefined &&
-        <div className='weather-forecast text'>
-          Today, you can expect <b>{condition}</b>, with a temperature of <b>{temperature} degrees celcius</b>.
-          {
-            isCovid && ' Remember to stay safe, stay inside ❤'
-          }
-        </div>
+      <div className='weather-forecast text'>
+        Today, you can expect <b>{condition}</b>, with a temperature of <b>{temperature} degrees celcius</b>.
+        {
+          isCovid && ' Remember to stay safe, stay inside ❤'
+        }
+      </div>
       }
-      <CategoryBar />
       <div className='recommendation-panel'>
         <EventList
+          isLocal={isLocal}
           isCovid={isCovid}
           events={events}
           setSelectedEvent={setSelectedEvent}

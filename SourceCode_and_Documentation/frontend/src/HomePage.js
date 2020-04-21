@@ -7,7 +7,7 @@ import { MoodButton } from './MoodButton';
 class HomePage extends Component {
 
   render() {
-    const { isCovid } = this.props;
+    const { isCovid, style } = this.props;
     return (
       <div className="home-page small-content">
         <div className="home-container">
