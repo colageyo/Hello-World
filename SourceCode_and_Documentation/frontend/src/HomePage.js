@@ -2,15 +2,16 @@ import React, { Component } from 'react';
 import Banner from './Banner';
 import './Banner.css'
 import './HomePage.css';
-import Background from './assets/background_image.png';
+import Background from './assets/background_day.png';
 import {MoodButton} from './MoodButton';
 
 class HomePage extends Component {
-  
+
   render() {
+    const { isCovid } = this.props;
     return (
       <div className="home-page small-content">
-        <Banner />
+        {isCovid && <Banner />}
         <div className="home-container">
           <div className="home-text">
             <div className="text large-text">Hello Sydney ! </div>
@@ -22,15 +23,15 @@ class HomePage extends Component {
             <MoodButton mood={"artsy"}/>
             <MoodButton mood={"delicious"}/>
             <MoodButton mood={"indoors"}/>
-            <MoodButton mood={"outdoors"}/>
+            <MoodButton isCovid={isCovid} mood={"outdoors"}/>
             <MoodButton mood={"historic"}/>
             <MoodButton mood={"geeky"}/>
             <MoodButton mood={"family-friendly"}/>
           </div>
         </div>
 
-        <div className = "home-background">
-          <img className="home-image" src={Background}/>
+        <div className="home-background">
+          <img className="home-image" src={Background} />
         </div>
       </div>
     );

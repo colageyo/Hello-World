@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import './HelloWorldToolBar.css';
 import './App.css';
-import Logo from './favicon.ico';
+import Logo from './assets/logo_day.png';
 
 function HelloWorldToolBar() {
     return (

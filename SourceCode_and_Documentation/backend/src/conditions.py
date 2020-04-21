@@ -10,13 +10,13 @@ TIME_TAKEN_MULTIPLICATION_FACTOR = 72
 
 
 class Conditions:
-    def __init__(self, weather, time, temperature, humidity, visibility, activity_tags, sunrise, sunset, longitude,
+    def __init__(self, weather, time, temperature, humidity, activity_tags, sunrise, sunset, longitude,
                  latitude):
         self._weather = weather
         self._time = time
         self._temperature = temperature
         self._humidity = humidity
-        self._visibility = visibility
+        # self._visibility = visibility
         self._activity_tags = activity_tags
         self._sunrise = sunrise
         self._sunset = sunset
@@ -55,13 +55,13 @@ class Conditions:
     def humidity(self, value):
         self._humidity = value
 
-    @property
-    def visibility(self):
-        return self._visibility
+    # @property
+    # def visibility(self):
+    #     return self._visibility
 
-    @visibility.setter
-    def visibility(self, value):
-        self._visibility = value
+    # @visibility.setter
+    # def visibility(self, value):
+    #     self._visibility = value
 
     @property
     def activity_tags(self):
@@ -122,8 +122,8 @@ class Conditions:
 
         return self.time < seven_am_today
 
-    def is_too_hazy(self):
-        return self.visibility < 10000
+    # def is_too_hazy(self):
+    #     return self.visibility < 10000
 
     def is_sunrise_soon(self):
         sunrise = self.sunrise.timestamp()
@@ -165,7 +165,7 @@ class Conditions:
                 "latitude": self._latitude,
                 "longitude": self._longitude,
             },
-            "visibility": self._visibility,
+            # "visibility": self._visibility,
             "activity_tags": self._activity_tags,
             "sunrise": self._sunrise.timestamp(),
             "sunset": self._sunset.timestamp(),
