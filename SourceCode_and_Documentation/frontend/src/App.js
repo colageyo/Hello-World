@@ -72,7 +72,9 @@ class App extends Component {
           style={toggleDynamicBackgroundOn ? styles[style] : {}}
         >
           {isCovid && <Banner />}
-          <HelloWorldToolBar />
+
+          <HelloWorldToolBar style={style}/>
+
           <Route
             exact
             path="/"
