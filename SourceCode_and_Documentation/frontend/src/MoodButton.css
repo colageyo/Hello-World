@@ -17,6 +17,14 @@
   cursor: pointer;
 }
 
+.mood-button-selected {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.mood-button-selected:hover {
+  background: rgba(0, 0, 0, 0.1);
+}
+
 .mood-button:hover .mood-text[disabled] {
   color: #a3a3a3;
 }
