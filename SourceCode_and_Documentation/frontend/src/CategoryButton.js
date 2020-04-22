@@ -69,7 +69,13 @@ class CategoryButton extends Component {
         onMouseLeave={this.onMouseLeave}
       >
         {/*{covidLog}*/}
-        <div className="category-text text">
+        <div
+          className={
+            this.props.style === "evening" && this.props.value
+              ? "category-text text text-white"
+              : "category-text text"
+          }
+        >
           {this.props.category}{" "}
           <img
             className="category-image"

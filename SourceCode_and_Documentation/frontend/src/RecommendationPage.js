@@ -7,14 +7,14 @@ import Map from './Map';
 import './RecommendationPage.css';
 
 const RecommendationPage = (props) => {
-  const { tags = [], isCovid } = props;
+  const { tags = [], isCovid, toggleCategory, style } = props;
   const [
     events,
     setEvents
   ] = React.useState([]);
 
   const [
-    selectedEvent, 
+    selectedEvent,
     setSelectedEvent
   ] = React.useState();
 
@@ -26,7 +26,7 @@ const RecommendationPage = (props) => {
     Axios.get(
       'http://localhost:5000/conditions'
     ).then(res => {
-      const { conditions: { weather, temperature }} = res.data;
+      const { conditions: { weather, temperature } } = res.data;
       const description = weather.split('-')[1].trim();
       setCondition(description);
       setTemperature(temperature);
@@ -37,7 +37,7 @@ const RecommendationPage = (props) => {
     Axios.post(
       'http://localhost:5000/events/recommended',
       {
-        tags,
+        tags: Object.keys(tags).filter(tag => tags[tag]),
       },
       {
         headers: {
@@ -63,10 +63,13 @@ const RecommendationPage = (props) => {
     >
       <div style={{ flexGrow: 1 }}>
         <CategoryBar
+          categories={tags} 
+          toggleCategory={toggleCategory}
           isLocal={isLocal}
           isCovid={isCovid}
           handleLocal={handleLocal}
           turnOffLocal={turnOffLocal}
+          style={style}
         />
       </div>
       {condition !== undefined && temperature !== undefined &&

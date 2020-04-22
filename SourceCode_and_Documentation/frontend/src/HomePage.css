@@ -3,6 +3,15 @@
     flex-grow: 1;
 }
 
+.lets-go {
+    font-size: 1.25rem;
+    margin: 20px 8px;
+}
+
+#arrow {
+    max-width: 14px;
+}
+
 .home-container{
     z-index: 100;
     position: absolute;
@@ -13,21 +22,18 @@
 
 @media(min-width: 600px) {
     .home-container {
-        /*margin-top: 100px;*/
         width: 400px;
     }
 }
 
 @media(min-width: 900px) {
     .home-container {
-        /*margin-top: 100px;*/
         width: 600px;
     }
 }
 
 @media(min-width: 1300px) {
     .home-container {
-        /*margin-top: 150px;*/
         width: 700px;
     }
 }
@@ -54,7 +60,6 @@
 }
 
 .home-background {
-    /*margin-top: 90px;*/
     bottom: 0;
 }
 
