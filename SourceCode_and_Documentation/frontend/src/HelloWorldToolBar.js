@@ -12,7 +12,6 @@ import { render } from '@testing-library/react';
 
 function HelloWorldToolBar(props) {
   
-  // const {style} = props;
   const styles = {
     sunset: SunsetLogo,
     day: DayLogo,
