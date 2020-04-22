@@ -21,7 +21,8 @@ def filter_by_tags(events, tags):
 
 
 def suitable(event, location):
-    if event.is_ended(location.time) or not location.is_close_to(event.longitude, event.latitude):
+    if not location.is_close_to(event.longitude, event.latitude):
+    # if event.is_ended(location.time) or not location.is_close_to(event.longitude, event.latitude):
         return False
 
     # if event.start_time != '' and datetime.datetime.now().timestamp() + location.time_taken_to_reach(event.longitude,

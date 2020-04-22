@@ -139,6 +139,8 @@ def normalise_response(response, category_id):
     )
 
 def get_meetups():
+    print('Meetup')
+
     city = "Sydney"
 
     all_events = []

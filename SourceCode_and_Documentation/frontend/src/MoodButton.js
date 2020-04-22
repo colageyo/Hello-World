@@ -3,7 +3,7 @@ import { CovidDialog } from './CovidDialog';
 import "./MoodButton.css";
 
 const icons = {
-  delicious: '🍔',
+  hungry: '🍔',
   artsy: '🎨',
   sporty: '⚽',
   romantic: '💖',
@@ -35,7 +35,7 @@ export const MoodButton = (props) => {
     <div className={`mood-button ${props.value ? 'mood-button-selected' : ''}`} onClick={onClick} onMouseMove={onMouseMove} onMouseLeave={onMouseLeave} >
       {isDisabled && x && y && <CovidDialog top={y} left={x} />}
       <div className="mood-text text" disabled={isDisabled}>
-        {mood} {icons[mood] || ""}
+        {mood === 'hungry' ? 'delicious' : mood} {icons[mood] || ""}
       </div>
     </div>
   );

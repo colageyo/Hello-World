@@ -16,7 +16,7 @@ import Sporty from "./icons/sporty.png";
 const icons = {
   "family-friendly": Family,
   artsy: Artsy,
-  delicious: Delicious,
+  hungry: Delicious,
   geeky: Geeky,
   historic: History,
   indoors: Indoor,
@@ -76,7 +76,7 @@ class CategoryButton extends Component {
               : "category-text text"
           }
         >
-          {this.props.category}{" "}
+          {this.props.category === 'hungry' ? 'delicious' : this.props.category}{" "}
           <img
             className="category-image"
             src={icons[this.props.category]}

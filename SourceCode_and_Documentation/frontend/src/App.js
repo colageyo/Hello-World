@@ -36,7 +36,7 @@ const styles = {
 export const categories = [
   "family-friendly",
   "artsy",
-  "delicious",
+  "hungry",
   "geeky",
   "historic",
   "indoors",
@@ -62,7 +62,7 @@ class App extends Component {
   render() {
     // if true, display gradient background
     const toggleDynamicBackgroundOn = true;
-    const style = "day";
+    const style = "rainy";
     const isCovid = false;
 
     return (

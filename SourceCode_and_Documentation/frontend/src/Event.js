@@ -1,4 +1,5 @@
 import React from "react";
+import DayLogo from './assets/logo_day.png';
 import './Event.css';
 
 export const Event = (props) => {
@@ -20,11 +21,11 @@ export const Event = (props) => {
       }}
     >
       {is_online && <div className="online-banner">Online Event</div>}
-      {image !== "" && <img
-        src={image}
+      <img
+        src={image === '' ? DayLogo : image}
         className='event-picture'
         alt='Sydney'
-      />}
+      />
       <div className='event-text'>
         <p>
           {name}

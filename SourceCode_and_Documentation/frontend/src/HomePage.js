@@ -61,9 +61,9 @@ class HomePage extends Component {
               value={this.props.categories["artsy"]}
             />
             <MoodButton
-              mood={"delicious"}
-              onClick={() => this.props.toggleCategory("delicious")}
-              value={this.props.categories["delicious"]}
+              mood={"hungry"}
+              onClick={() => this.props.toggleCategory("hungry")}
+              value={this.props.categories["hungry"]}
             />
             <MoodButton
               mood={"indoors"}

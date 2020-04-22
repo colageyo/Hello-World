@@ -1,8 +1,16 @@
-import json, requests, datetime
-from src.event import Event
+import json, requests, datetime, pytz
+import os
 
 URL = 'https://api.foursquare.com/v2/venues/search'
 PREMIUM_URL = 'https://api.foursquare.com/v2/venues/'
+
+if __name__ == '__main__':
+    import sys
+
+    cwd = os.getcwd()
+    sys.path.append(cwd)
+
+from src.event import Event
 
 # A dictionary containing the category id of all
 # the required categories.
@@ -56,8 +64,10 @@ CATEGORIES_TAGS = {
 
 
 def get_all_events():
+    print('FourSquare')
     event_list = []
     
+    # for category in ['4bf58dd8d48988d147941735']:
     for category in CATEGORIES.keys():
         # params include ll as the latitude and longitude of the city or suburb to search in.
         client_info = {
@@ -65,7 +75,8 @@ def get_all_events():
             'client_secret': 'XZP10N5EEDLDVNT04WPSFYUMWPX20LVCFGMC2JMWKXHRG2AI',
             'v': '20180604',
             'categoryId': category,
-            'limit': 28,
+            'limit': 10,
+            'radius': 2000,
             'll': '-33.9173, 151.2313'
             }
 
@@ -96,19 +107,21 @@ def get_event_details(id):
     return None
 
 def time_to_unix_time(time_str):
+    time = None
     if time_str == 'Midnight':
         dt = str(datetime.datetime.now()).split()[0] + ' ' + '00:00:00'
     else:
-        time = None
         if time_str[len(time_str)-2] == 'A':
             time = datetime.datetime.strptime(time_str, '%H:%M AM')
         elif time_str[len(time_str)-2] == 'P':
             time = datetime.datetime.strptime(time_str, '%H:%M PM')
         dt = str(datetime.datetime.now()).split()[0]
-        if time is not None:
-            dt += ' ' + str(time).split()[1]
-    
-    dt = datetime.datetime.strptime(dt, '%Y-%m-%d %H:%M:%S')
+    if time is not None:
+        dt += ' ' + str(time).split()[1]
+    try:
+        dt = datetime.datetime.strptime(dt, '%Y-%m-%d %H:%M:%S')
+    except:
+        dt = datetime.datetime.strptime(dt, '%Y-%m-%d')
     return dt.timestamp()
 
 def parseVenueToEvent(venue, category):
@@ -133,11 +146,15 @@ def parseVenueToEvent(venue, category):
     print(venue)
 
     if 'hours' in venue:
-        time = venue['hours']['timeframes']
-        line = str(time[0]['open'][0]['renderedTime'])
-        line = line.split("–")
-        start_time = time_to_unix_time(line[0])
-        end_time = time_to_unix_time(line[1])
+        time = venue['hours']['timeframes'][0]['open'][0]
+        start_time = datetime.datetime.now().replace(day=23, hour=9, minute=0, second=0, microsecond=0).timestamp()
+        end_time = datetime.datetime.now().replace(day=23, hour=23, minute=0, second=0, microsecond=0).timestamp()
+        # start_time = get_time(time['start'])
+        # end_time = get_time(time['end'])
+        # line = str(time[0]['open'][0]['renderedTime'])
+        # line = line.split("–")
+        # start_time = time_to_unix_time(line[0])
+        # end_time = time_to_unix_time(line[1])
     if 'url' in venue:
         url = venue['url']
     if 'description' in venue:
@@ -157,3 +174,20 @@ def parseVenueToEvent(venue, category):
         ['lng']), venue['name'], "", price, is_online, description, "", CATEGORIES_TAGS.get(CATEGORIES.get(category)), price_tier, rating, image)
     
     return event_obj
+
+if __name__ == '__main__':
+    for event in get_all_events():
+        print('----------------------------')
+        print("Name: " + event._name)
+        print("URL: " + event._url)
+        print("Time: "
+              + str(datetime.datetime.fromtimestamp(event._start_time, tz=pytz.timezone('Australia/Sydney')))
+              + " to "
+              + str(datetime.datetime.fromtimestamp(event._end_time, tz=pytz.timezone('Australia/Sydney'))))
+        if event._organiser is not None:
+            print("Organiser: " + event._organiser)
+        print("Summary: " + event._summary)
+        print("Price? " + str(event._price))
+        print("Is online? " + str(event._is_online))
+        print("Tags: " + str(event._tags))
+        print("Image: " + str(event._image))

@@ -20,6 +20,8 @@ CLASSIFICATIONS = {
 
 
 def get_all_events():
+    print('Ticketmaster')
+
     event_list = []
 
     for classification in CLASSIFICATIONS.keys():

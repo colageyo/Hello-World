@@ -11,7 +11,7 @@ export default {
 };
 
 const moods = {
-    delicious: "delicious",
+    hungry: "hungry",
     artsy: "artsy",
     sporty: "sporty",
     romantic: "romantic",
@@ -27,6 +27,6 @@ export const CovidDialog = () =>
 
 export const MoodButton = () =>
     <MoodButtonImpl
-        mood={options('Mood', moods, 'delicious', { display: 'inline-radio' })}
+        mood={options('Mood', moods, 'hungry', { display: 'inline-radio' })}
         onClick={action('onClick')}
     />;

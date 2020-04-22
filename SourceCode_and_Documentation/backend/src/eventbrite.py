@@ -199,6 +199,9 @@ def retrieve_event(response):
 
 def get_events():
     '''When called, executes the web scraping and API calls, to generate a list of Event objects'''
+    
+    print('Eventbrite')
+    
     # scrape for event ids
     event_ids = scrape_event_ids()
 

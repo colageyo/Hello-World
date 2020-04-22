@@ -14,7 +14,7 @@ const EventList = (
     if (isLocal) {
       return e.event_id.includes('FOURSQUARE') && e.tags.includes("hungry");
     } else if (isCovid) {
-      return e.is_online;
+      return e.event_id.includes('FOURSQUARE') && e.tags.includes("hungry") ? true : e.is_online;
     }
     return true;
   };

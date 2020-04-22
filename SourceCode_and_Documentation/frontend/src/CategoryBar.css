@@ -4,6 +4,7 @@
   overflow-x: auto;
   overflow-y: hidden;
   white-space: nowrap;
+  justify-content: center;
   align-self: center;
   margin: 0 50px;
 }
