@@ -18,6 +18,7 @@ const EventList = (
     }
     return true;
   };
+  
   const filteredEvents = events.filter(shouldShowEvent);
   return (
     <div
