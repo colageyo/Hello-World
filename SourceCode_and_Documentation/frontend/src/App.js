@@ -38,8 +38,8 @@ class App extends Component {
   render() {
     // if true, display gradient background
     const toggleDynamicBackgroundOn = true;
-    const style = "sunset";
-    const isCovid = true;
+    const style = "day";
+    const isCovid = false;
 
     return (
       <Router>

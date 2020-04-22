@@ -66,8 +66,7 @@ def get_all_events():
             'v': '20180604',
             'categoryId': category,
             'limit': 28,
-            'radius': '100000',
-            'll': '-33.8671417236, 151.2071075439'
+            'll': '-33.9173, 151.2313'
             }
 
         response = requests.get(url=URL, params=client_info)
@@ -100,11 +99,14 @@ def time_to_unix_time(time_str):
     if time_str == 'Midnight':
         dt = str(datetime.datetime.now()).split()[0] + ' ' + '00:00:00'
     else:
+        time = None
         if time_str[len(time_str)-2] == 'A':
-            dt = datetime.datetime.strptime(time_str, '%H:%M AM')
+            time = datetime.datetime.strptime(time_str, '%H:%M AM')
         elif time_str[len(time_str)-2] == 'P':
-            dt = datetime.datetime.strptime(time_str, '%H:%M PM')
-        dt = str(datetime.datetime.now()).split()[0] + ' ' + str(dt).split()[1] 
+            time = datetime.datetime.strptime(time_str, '%H:%M PM')
+        dt = str(datetime.datetime.now()).split()[0]
+        if time is not None:
+            dt += ' ' + str(time).split()[1]
     
     dt = datetime.datetime.strptime(dt, '%Y-%m-%d %H:%M:%S')
     return dt.timestamp()
