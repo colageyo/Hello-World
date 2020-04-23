@@ -67,7 +67,6 @@ def get_all_events():
     print('FourSquare')
     event_list = []
     
-    # for category in ['4bf58dd8d48988d147941735']:
     for category in CATEGORIES.keys():
         # params include ll as the latitude and longitude of the city or suburb to search in.
         client_info = {
@@ -143,18 +142,14 @@ def parseVenueToEvent(venue, category):
     if premium_details is not None:
         venue = premium_details
 
-    print(venue)
-
     if 'hours' in venue:
         time = venue['hours']['timeframes'][0]['open'][0]
-        start_time = datetime.datetime.now().replace(day=23, hour=9, minute=0, second=0, microsecond=0).timestamp()
-        end_time = datetime.datetime.now().replace(day=23, hour=23, minute=0, second=0, microsecond=0).timestamp()
-        # start_time = get_time(time['start'])
-        # end_time = get_time(time['end'])
-        # line = str(time[0]['open'][0]['renderedTime'])
-        # line = line.split("–")
-        # start_time = time_to_unix_time(line[0])
-        # end_time = time_to_unix_time(line[1])
+        start_time = get_time(time['start'])
+        end_time = get_time(time['end'])
+        line = str(time[0]['open'][0]['renderedTime'])
+        line = line.split("–")
+        start_time = time_to_unix_time(line[0])
+        end_time = time_to_unix_time(line[1])
     if 'url' in venue:
         url = venue['url']
     if 'description' in venue:
