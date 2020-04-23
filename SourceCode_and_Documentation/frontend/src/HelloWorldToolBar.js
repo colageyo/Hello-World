@@ -4,7 +4,7 @@ import './HelloWorldToolBar.css';
 import './App.css';
 import DayLogo from './assets/logo_day.png';
 import SunsetLogo from './assets/logo_sunset.png';
-import EveningLogo from './assets/logo_evening.png';
+import EveningLogo from './assets/logo_evening_1.png';
 import SunriseLogo from './assets/logo_sunrise.png';
 import RainyLogo from './assets/logo_rainy.png';
 import { render } from '@testing-library/react';

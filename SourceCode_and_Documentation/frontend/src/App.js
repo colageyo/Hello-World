@@ -62,7 +62,7 @@ class App extends Component {
   render() {
     // if true, display gradient background
     const toggleDynamicBackgroundOn = true;
-    const style = "rainy";
+    const style = "day";
     const isCovid = false;
 
     return (
