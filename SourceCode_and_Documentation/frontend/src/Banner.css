@@ -1,0 +1,30 @@
+.banner-main-container{
+    background-color: white;
+    opacity: 0.8;
+    padding: 9px 0;
+    left: 0;
+    margin-top: 0;
+    z-index: 1;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+}
+
+#row {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 0;
+    min-width: 96%; 
+}
+
+.closing-icon {
+    height: 15px;
+    margin: auto 0;
+    cursor: pointer;
+    justify-content: center;
+}
+
+.covid-text{
+    color: black;
+    font-family: Montserrat, Helvetica, sans-serif;
+}

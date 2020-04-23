@@ -1,0 +1,38 @@
+.event-picture {
+    max-width: 250px;
+    display: inline;
+    float: left;
+    margin-right: 10px;
+}
+
+.event-item {
+    overflow: hidden;
+    position: relative;
+    background-color: white;
+    margin-bottom: 10px;
+    height: 180px;
+    padding: 10px;
+    display: flex;
+    cursor: pointer;
+}
+
+.event-summary {
+    font-size: 0.8rem;
+}
+
+.learn-more {
+    float: right;
+}
+
+.online-banner {
+    font-size: 20px;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    margin-bottom: 20px;
+    color: white;
+    background-color: rgb(255, 77, 38);
+    padding: 2px 0;
+    width: 200px;
+    text-align: center;
+}

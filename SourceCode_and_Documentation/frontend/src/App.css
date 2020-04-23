@@ -1,0 +1,69 @@
+.App {
+  position: relative;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Ultra slim screens */
+.banner-main-container 
+  .row ,
+  .small-content{
+    padding: 0 50px;
+  }
+
+@media(min-width: 600px) {
+  /* Phone devices */
+  .banner-main-container 
+  .row ,
+  .small-content{
+    padding: 15px 20px 10px 20px;
+  }
+}
+
+@media(min-width: 900px) {
+  /* Tablet or small laptop devices */
+  .banner-main-container 
+  .row ,
+  .small-content{
+    padding: 15px 20px 10px 20px;
+  }
+}
+
+@media(min-width: 1300px) {
+  /* Laptop web */
+  .banner-main-container 
+  .row ,
+.small-content{
+    padding: 15px 20px 10px 20px;
+  }
+}
+
+@media(min-width: 1600px) {
+  /* High res monitors */
+  .banner-main-container 
+  .row ,
+  .small-content {
+    padding: 15px 100px 10px 100px;
+  }
+}
+
+.text {
+  font-family: Montserrat, Helvetica, sans-serif;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+@font-face {
+  font-family: 'Montserrat';
+  src: local('Montserrat'), url(./fonts/Montserrat/Montserrat-Regular.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'Montserrat';
+  font-weight: 900;
+  src: local('Montserrat'), url(./fonts/Montserrat/Montserrat-Bold.ttf) format('truetype');
+}

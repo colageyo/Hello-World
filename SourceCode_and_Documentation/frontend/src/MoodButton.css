@@ -1,0 +1,37 @@
+.mood-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+  height: 33px;
+  border-radius: 10px;
+  width: fit-content;
+  margin: 7px;
+  border-width: 2px;
+  border-style: solid;
+  border-color: inherit;
+}
+
+.mood-button:hover {
+  background-color: #e6e6e6;
+  cursor: pointer;
+}
+
+.mood-button-selected {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.mood-button-selected:hover {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+.mood-button:hover .mood-text[disabled] {
+  color: #a3a3a3;
+}
+
+.mood-text {
+  color:inherit;
+  font-size: 1.25rem;
+  letter-spacing: .05rem;
+  padding: 0 20px;
+}

@@ -1,0 +1,38 @@
+.category-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f2f2f2;
+  height: 40px;
+  border-radius: 10px;
+  width: fit-content;
+  margin: 7px;
+}
+
+.category-button:hover {
+  background-color: #e6e6e6;
+  cursor: pointer;
+}
+
+.category-text {
+  color: #000000;
+  font-size: 1.25rem;
+  user-select: none;
+  letter-spacing: 0.05rem;
+  padding: 0 20px;
+}
+
+.category-image {
+  max-width: 20px;
+}
+
+.click-effect {
+  border: solid;
+  border-color: grey;
+  background: transparent;
+  border-width: thin;
+}
+
+.text-white {
+  color: white;
+}

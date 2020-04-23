@@ -1,0 +1,19 @@
+.recommendation-page {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  overflow: hidden;
+}
+
+.recommendation-panel {
+  flex-grow: 1;
+  height: 100%;
+  width: 100%;
+  display: flex;
+}
+
+.weather-forecast {
+  text-align: center;
+  padding: 15px 0;
+  background-color: rgb(242, 242, 242)
+}
