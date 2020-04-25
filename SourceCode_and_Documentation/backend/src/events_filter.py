@@ -1,6 +1,7 @@
 import datetime
 
 import src.weather
+import src.conditions
 
 
 def filter_events(events, tags):
@@ -30,19 +31,28 @@ def suitable(event, location):
     #         event.start_time):
     #     return False
 
-    # if event.is_only_outdoors() and (
-    #         location.is_too_humid() or
-    #         location.is_too_hot() or
-    #         location.is_too_early() or
-    #         location.is_too_late() or
-    #         location.is_too_hazy()
-    # ):
-    #     return False
+    if event.is_only_outdoors() and (
+            location.is_too_humid() or
+            location.is_too_hot() or
+            location.is_raining()
+    ):
+        return False
 
     return True
 
 
 def filter_by_location(events):
+    # location = src.conditions.Conditions(
+    #     'Thunderstorms - very bad',
+    #     datetime.datetime.now().timestamp(),
+    #     16.93,
+    #     64,
+    #     ["outdoors"],
+    #     1587759904.000017,
+    #     1587799253.000017,
+    #     151.208435,
+    #     -33.867779
+    # )
     location = src.weather.get_weather_by_city('sydney')
 
     filtered_events = []

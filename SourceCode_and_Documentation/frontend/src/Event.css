@@ -24,17 +24,32 @@
     float: right;
 }
 
-.online-banner {
+.tag-banners {
     font-size: 20px;
     position: absolute;
     left: 0;
     bottom: 0;
     margin-bottom: 20px;
+}
+
+.tag-banner {
     color: white;
-    background-color: rgb(255, 77, 38);
+    margin-top: 10px;
     padding: 2px 0;
     width: 200px;
     text-align: center;
+}
+
+.restaurant-banner {
+    background-color: rgb(109, 164, 18);
+}
+
+.indoors-banner {
+    background-color: rgb(113, 185, 255);
+}
+
+.online-banner {
+    background-color: rgb(255, 77, 38);
 }
 
 .event-text {

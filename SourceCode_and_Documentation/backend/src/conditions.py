@@ -103,6 +103,9 @@ class Conditions:
     def latitude(self, value):
         self._latitude = value
 
+    def is_raining(self):
+        return self._weather.split()[0].lower() not in ["drizzle", "clear", "clouds"]
+
     def is_too_hot(self):
         return self.temperature >= 30
 

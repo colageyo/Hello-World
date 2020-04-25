@@ -29,6 +29,23 @@ def send_error(message):
 def get_current_conditions():
     conditions = src.weather.get_weather_by_city('sydney').get_json()
     try:
+        # return send_success({
+        #     "conditions": {
+        #         "weather": "Rain - moderate rain",
+        #         "time": 1587816126.133918,
+        #         "temperature": 16.93,
+        #         "humidity": 64,
+        #         "location": {
+        #             "latitude": -33.867779,
+        #             "longitude": 151.208435
+        #         },
+        #         "activity_tags": ["indoors", "outdoors"],
+        #         "sunrise": 1587759904.000017,
+        #         "sunset": 1587799253.000017,
+        #         "is_sunrise_soon": False,
+        #         "is_sunset_soon": False
+        #     }
+        # })
         return send_success({
             "conditions": conditions
         })

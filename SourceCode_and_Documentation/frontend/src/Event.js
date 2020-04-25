@@ -5,11 +5,13 @@ import './Event.css';
 export const Event = (props) => {
   const {
     event: {
+      event_id,
       name,
       url,
       image,
       summary,
       is_online,
+      tags,
     }
   } = props;
 
@@ -20,7 +22,11 @@ export const Event = (props) => {
         props.onClick();
       }}
     >
-      {is_online && <div className="online-banner">Online Event</div>}
+      <div className="tag-banners">
+        {event_id.includes('FOURSQUARE') && tags.includes('hungry') && <div className="tag-banner restaurant-banner">Local Eatery</div>}
+        {tags.includes('indoors') && !tags.includes('hungry') && <div className="tag-banner indoors-banner">Indoor</div>}
+        {is_online && <div className="tag-banner online-banner">Online</div>}
+      </div>
       <img
         src={image === '' ? DayLogo : image}
         className='event-picture'
