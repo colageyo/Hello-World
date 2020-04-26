@@ -31,7 +31,7 @@ def get_current_conditions():
     try:
         # return send_success({
         #     "conditions": {
-        #         "weather": "Rain - moderate rain",
+        #         "weather": "Rain - strong winds and thunderstorm",
         #         "time": 1587816126.133918,
         #         "temperature": 16.93,
         #         "humidity": 64,

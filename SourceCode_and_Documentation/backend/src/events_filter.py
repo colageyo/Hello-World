@@ -43,7 +43,7 @@ def suitable(event, location):
 
 def filter_by_location(events):
     # location = src.conditions.Conditions(
-    #     'Thunderstorms - very bad',
+    #     'Thunderstorms - strong winds and thunderstorms',
     #     datetime.datetime.now().timestamp(),
     #     16.93,
     #     64,
