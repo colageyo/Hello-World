@@ -29,5 +29,5 @@ yarn start
 ```
 Then open `localhost:3000` on your browser.
 
-
-
+## View the Deployed Version
+https://heelloworld.herokuapp.com/
